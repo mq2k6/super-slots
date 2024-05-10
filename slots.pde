@@ -160,7 +160,7 @@ class slots {
     PImage[][] new_sym = new PImage[3][columns];
     for(int i = 0; i < 3; ++i) {
       for(int j = 0; j < columns; ++j) {
-        new_sym[i][j] = loadImage(machine.get(i).get(j).img_path);
+        new_sym[i][j] = machine.get(i).get(j).img;
       }
     }
     return new_sym;

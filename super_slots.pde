@@ -58,7 +58,6 @@ void setup() {
       symbols[randomI][randomJ] = temp;
     }
   }
-
   s = new slots(colNum);
   
 }
