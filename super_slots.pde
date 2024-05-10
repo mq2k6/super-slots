@@ -26,8 +26,8 @@ float[] columnSpeeds = new float[numImages];
 
 void setup() {
 
-  //calistoga = createFont("Calistoga-Regular.ttf", 80);
-  //abeezee = createFont("ABeeZee-Regular.ttf", 24);
+  calistoga = createFont("Calistoga-Regular.ttf", 80);
+  abeezee = createFont("ABeeZee-Regular.ttf", 24);
   
   frameRate(10);
   size(1000, 700);
@@ -86,6 +86,30 @@ void set_slots() {
 
 void draw() {
   background(255);
+  spin();
+}
+
+void mousePressed() {
+  spinning = true;
+  spin_timer = millis();
+  s.spin(10);
+  for (int i = 0; i < numImages; i++) {
+    changeCol[i] = 0;
+    columnSpeeds[i] = random(2, 10);
+  }
+}
+
+void mouseClicked() {
+
+  if (mouseX < 800 && mouseX > 700) {
+    if (mouseY < 100 && mouseY > 0) {
+      homeScreen = false;
+      faqScreen = true;
+    }
+  }
+}
+
+void spin() {
   float x = 0;
   float y = 0;
 
@@ -120,25 +144,19 @@ void draw() {
   }
 }
 
-void mousePressed() {
-  spinning = true;
-  spin_timer = millis();
-  s.spin(10);
-  for (int i = 0; i < numImages; i++) {
-    changeCol[i] = 0;
-    columnSpeeds[i] = random(2, 10);
-  }
-}
 
-void mouseClicked() {
 
-  if (mouseX < 800 && mouseX > 700) {
-    if (mouseY < 100 && mouseY > 0) {
-      homeScreen = false;
-      faqScreen = true;
-    }
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
 
 void drawFaqScreen() {
   textFont(calistoga);
