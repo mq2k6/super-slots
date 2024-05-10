@@ -88,7 +88,7 @@ void set_slots() {
 
 void draw() {
   background(255);
-  spin();
+  play_spin_animation();
 }
 
 void mousePressed() {
@@ -110,7 +110,7 @@ void mouseClicked() {
   }
 }
 
-void spin() {
+void play_spin_animation() {
   float x = 0;
   float y = 0;
 
