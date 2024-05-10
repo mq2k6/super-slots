@@ -1,5 +1,10 @@
 import g4p_controls.*;
 
+boolean homeScreen = true;
+boolean faqScreen = false;
+
+PFont calistoga, abeezee;
+
 ArrayList<symbol> ALL_SYMBOLS;
 slots s;
 
@@ -20,7 +25,9 @@ float[] columnSpeeds = new float[numImages];
 
 
 void setup() {
-  
+
+  calistoga = createFont("Calistoga-Regular.ttf", 80);
+  abeezee = createFont("ABeeZee-Regular.ttf", 24);
   
   frameRate(10);
   size(1000, 700);
@@ -29,7 +36,11 @@ void setup() {
   
   background(255);
   
-
+  if (homeScreen == true) {
+    circle(750, 50, 50);
+  } else if (faqScreen == true) {
+    drawFaqScreen();
+  }
 
   ALL_SYMBOLS = new ArrayList<symbol>();
   
@@ -117,4 +128,28 @@ void mousePressed() {
     changeCol[i] = 0;
     columnSpeeds[i] = random(2, 10);
   }
+}
+
+void mouseClicked() {
+
+  if (mouseX < 800 && mouseX > 700) {
+    if (mouseY < 100 && mouseY > 0) {
+      homeScreen = false;
+      faqScreen = true;
+    }
+  }
+}
+
+void drawFaqScreen() {
+  textFont(calistoga);
+  textAlign(CENTER, CENTER);
+  textSize(80);
+  text("How to play:", 400, 75);
+  
+  textFont(abeezee);
+  textSize(24);
+  textAlign(LEFT, CENTER);
+  text("It's easy to play Super Slots! Just pull the lever and watch the slots \nspin away! If you can get 3 in a row, in any direction, you win! \nEasy as that! Just make sure your balance doesn't hit zero...", 15, 200);
+
+  
 }
