@@ -26,8 +26,8 @@ float[] columnSpeeds = new float[numImages];
 
 void setup() {
 
-  calistoga = createFont("Calistoga-Regular.ttf", 80);
-  abeezee = createFont("ABeeZee-Regular.ttf", 24);
+  //calistoga = createFont("Calistoga-Regular.ttf", 80);
+  //abeezee = createFont("ABeeZee-Regular.ttf", 24);
   
   frameRate(10);
   size(1000, 700);
