@@ -9,7 +9,7 @@ ArrayList<symbol> ALL_SYMBOLS;
 slots s;
 
 //inaccurate
-int numImages =   9;
+int numImages = 9;
 //lol
 
 int colNum = 3;
