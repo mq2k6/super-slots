@@ -22,7 +22,7 @@ class slots {
       ArrayList<symbol>new_row = new ArrayList<symbol>();
       //placeholders
       for(int j = 0; j < columns; ++j) {
-        new_row.add(new symbol("0.jpg", "z"));      
+        new_row.add(new symbol("0.jpg", "z", 0));      
       }
       machine.add(new_row);
     }
@@ -57,15 +57,17 @@ class slots {
   //check each cell
   void check_win(float bet) {
     int wins = 0;
+    ArrayList<symbol> winners = new ArrayList<symbol>();
     for(int i = 0; i < 3; ++i) {
       for(int j = 0; j < machine.get(i).size(); ++j) {
         if(check_surround(i, j, NONE, 1)) {
+          winners.add(machine.get(i).get(j));
           wins++;
         }
       }
     }
     println("wins:", wins);
-    println("payout", calc_payout(wins, bet));
+    println("payout", calc_payout(wins, bet, winners));
     println();
   }  
   
@@ -152,8 +154,12 @@ class slots {
     
   }
   
-  float calc_payout(int w, float bet) {
-    return w * 1.35 * bet;
+  float calc_payout(int w, float bet, ArrayList<symbol> wins) {
+    float multipler = 0;
+    for(int i = 0; i < wins.size(); ++i) {
+      multipler += wins.get(i).value;
+    }
+    return w * multipler * bet;
   }
   
   PImage[][] get_2d_array() {

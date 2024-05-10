@@ -2,9 +2,14 @@ class symbol{
   String id;
   String img_path;
   PImage img;
-  symbol(String i,String p) {
+  
+  float value;
+  
+  symbol(String i,String p, float v) {
     img_path = i;
     id = p;
     img = loadImage(img_path);
+    
+    value = v;
   }
 }

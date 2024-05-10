@@ -33,11 +33,11 @@ void setup() {
 
   ALL_SYMBOLS = new ArrayList<symbol>();
   
-  ALL_SYMBOLS.add(new symbol("0.jpg","a"));
-  ALL_SYMBOLS.add(new symbol("1.jpg","b"));
-  ALL_SYMBOLS.add(new symbol("2.jpg","c"));
-  ALL_SYMBOLS.add(new symbol("3.jpg","d"));
-  ALL_SYMBOLS.add(new symbol("4.jpg","e"));
+  ALL_SYMBOLS.add(new symbol("0.jpg","a", 5));
+  ALL_SYMBOLS.add(new symbol("1.jpg","b", 2));
+  ALL_SYMBOLS.add(new symbol("2.jpg","c", 1.35));
+  ALL_SYMBOLS.add(new symbol("3.jpg","d", 1.25));
+  ALL_SYMBOLS.add(new symbol("4.jpg","e", 1.5));
   
   numImages = ALL_SYMBOLS.size();
   
