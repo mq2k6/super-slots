@@ -7,6 +7,7 @@ PFont calistoga, abeezee;
 
 ArrayList<symbol> ALL_SYMBOLS;
 slots s;
+user u;
 
 //inaccurate
 int numImages = 9;
@@ -70,6 +71,7 @@ void setup() {
     }
   }
   s = new slots(colNum);
+  u = new user("Joe", 1000);
   
 }
 
@@ -90,9 +92,8 @@ void draw() {
 }
 
 void mousePressed() {
-  spinning = true;
+  u.spin_slots();
   spin_timer = millis();
-  s.spin(10);
   for (int i = 0; i < numImages; i++) {
     changeCol[i] = 0;
     columnSpeeds[i] = random(2, 10);
