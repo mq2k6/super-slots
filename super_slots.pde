@@ -145,19 +145,6 @@ void spin() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void drawFaqScreen() {
   textFont(calistoga);
   textAlign(CENTER, CENTER);
