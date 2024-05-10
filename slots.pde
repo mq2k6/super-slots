@@ -20,9 +20,9 @@ class slots {
     machine = new ArrayList<ArrayList<symbol>>();
     for(int i = 0; i < 3; ++i) {
       ArrayList<symbol>new_row = new ArrayList<symbol>();
-      //id value
+      //placeholders
       for(int j = 0; j < columns; ++j) {
-        new_row.add(new symbol("z", "z"));      
+        new_row.add(new symbol("0.jpg", "z"));      
       }
       machine.add(new_row);
     }
