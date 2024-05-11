@@ -92,12 +92,15 @@ void draw() {
 }
 
 void mousePressed() {
-  u.spin_slots();
-  spin_timer = millis();
-  for (int i = 0; i < numImages; i++) {
-    changeCol[i] = 0;
-    columnSpeeds[i] = random(2, 10);
+  if(!spinning) {
+    u.spin_slots();
+    spin_timer = millis();
+    for (int i = 0; i < numImages; i++) {
+      changeCol[i] = 0;
+      columnSpeeds[i] = random(2, 10);
+    }  
   }
+
 }
 
 void mouseClicked() {

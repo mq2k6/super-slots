@@ -11,9 +11,10 @@ class user {
   
   void spin_slots() {
     if(balance >= bet) {
-      s.spin(bet);
+      balance += s.spin(bet);
       spinning = true;
       balance -= bet;
+      println("balance:", balance);
     }
   }
   

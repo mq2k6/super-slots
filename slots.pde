@@ -35,10 +35,10 @@ class slots {
   }
 
   
-  void spin(float bet) {
+  float spin(float bet) {
     println("bet:", bet);
     fill_machine();
-    check_win(bet);
+    return check_win(bet);
   }
   
   //fill machine with random symbols
@@ -55,7 +55,7 @@ class slots {
   }
   
   //check each cell
-  void check_win(float bet) {
+  float check_win(float bet) {
     int wins = 0;
     ArrayList<symbol> winners = new ArrayList<symbol>();
     for(int i = 0; i < 3; ++i) {
@@ -67,8 +67,12 @@ class slots {
       }
     }
     println("wins:", wins);
+    float payout = calc_payout(wins, bet, winners);
+    
     println("payout", calc_payout(wins, bet, winners));
     println();
+    return payout;
+
   }  
   
   //uses recursion to check surrounding cells for the same symbol, and detect three in a row or more
