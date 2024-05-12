@@ -60,23 +60,27 @@ class slots {
     ArrayList<symbol> winners = new ArrayList<symbol>();
     for(int i = 0; i < 3; ++i) {
       for(int j = 0; j < machine.get(i).size(); ++j) {
-        if(check_surround(i, j, NONE, 1)) {
+        int common_symbols = check_surround(i, j, NONE, 1);
+        if(common_symbols >= 3) {
           winners.add(machine.get(i).get(j));
           wins++;
+          //increase rewards if get more than three in a row
+          if(common_symbols > 3) {
+            wins += (common_symbols - 3) * 3;
+          }
         }
       }
     }
     println("wins:", wins);
     float payout = calc_payout(wins, bet, winners);
-    
-    println("payout", calc_payout(wins, bet, winners));
+    println("payout", payout);
     println();
     return payout;
 
   }  
   
   //uses recursion to check surrounding cells for the same symbol, and detect three in a row or more
-  boolean check_surround(int i, int j, String direction, int found) {
+  int check_surround(int i, int j, String direction, int found) {
     
     //try all "forward" directions, to prevent from counting twice
     if(direction == NONE) {
@@ -150,11 +154,7 @@ class slots {
       }    
     }
     
-    if(found >= 3) {
-      return true;
-    } else {
-      return false;
-    }
+    return found;
     
   }
   
