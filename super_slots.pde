@@ -214,13 +214,13 @@ void draw_bet_info() {
 }
 
 void drawFaqScreen() {
+  fill(0);
+  image(FAQbackground, 0, 0);
+  image(FAQbanner, width / 2 - 200, 50);
   textFont(calistoga);
-  textAlign(CENTER, CENTER);
-  textSize(80);
-  text("How to play:", 400, 75);
-
+  textAlign(CENTER);
+  text("FAQ", width / 2, 150);
+  image(FAQtextField, width / 2 - 287, 250);
   textFont(abeezee);
-  textSize(24);
-  textAlign(LEFT, CENTER);
-  text("It's easy to play Super Slots! Just pull the lever and watch the slots \nspin away! If you can get 3 in a row, in any direction, you win! \nEasy as that! Just make sure your balance doesn't hit zero...", 15, 200);
+  //text("", ) FAQ Text
 }
