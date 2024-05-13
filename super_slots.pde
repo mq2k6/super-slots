@@ -9,9 +9,7 @@ ArrayList<symbol> ALL_SYMBOLS;
 slots s;
 user u;
 
-//inaccurate
 int numImages = 9;
-//lol
 
 int colNum = 3;
 PImage[][] symbols = new PImage[numImages][numImages];
@@ -74,6 +72,7 @@ void setup() {
   s = new slots(colNum);
   u = new user("Joe", 1000);
   
+  //lever images
   leverUp = loadImage("leverUp.jpg");
   leverUp.resize(200,0);
   leverDown = loadImage("leverDown.jpg");
@@ -102,16 +101,17 @@ void draw() {
 void mouseClicked() {   //when lever clicked, spin reels
   if (mouseX < 930 && mouseX > 750) {
     if (mouseY > 100 && mouseY < 240) {
-      if(!spinning) {
+        if(!spinning) {
           u.spin_slots();
           spin_timer = millis();
           for (int i = 0; i < numImages; i++) {
             changeCol[i] = 0;
             columnSpeeds[i] = random(2, 10);
           }  
-      }  
-   }
-}
+        }  
+     }
+  }
+
   
   if (mouseX < 800 && mouseX > 700) {
     if (mouseY < 100 && mouseY > 0) {
@@ -126,6 +126,9 @@ void leverImage() {
     image(leverDown, 750, 100);
   else 
     image(leverUp, 750, 100);
+  strokeWeight(10);
+  line(760, 0, 760, 450);
+  
 }
 
 
