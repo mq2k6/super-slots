@@ -16,7 +16,7 @@
 
 public void custom_slider1_change1(GCustomSlider source, GEvent event) { //_CODE_:col_slider:546561:
   colNum = col_slider.getValueI();
-  s.set_columns(colNum);
+  //s.set_columns(colNum);
 } //_CODE_:col_slider:546561:
 
 

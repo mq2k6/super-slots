@@ -15,6 +15,7 @@ int numImages = 9;
 
 int colNum = 3;
 PImage[][] symbols = new PImage[numImages][numImages];
+PImage leverUp, leverDown;
 
 boolean spinning = false;
 
@@ -73,6 +74,11 @@ void setup() {
   s = new slots(colNum);
   u = new user("Joe", 1000);
   
+  leverUp = loadImage("leverUp.jpg");
+  leverUp.resize(200,0);
+  leverDown = loadImage("leverDown.jpg");
+  leverDown.resize(200,0);
+  
 }
 
 //set symbols to match the 2d ArrayList in slot class
@@ -91,20 +97,22 @@ void draw() {
   play_spin_animation();
 }
 
-void mousePressed() {
-  if(!spinning) {
-    u.spin_slots();
-    spin_timer = millis();
-    for (int i = 0; i < numImages; i++) {
-      changeCol[i] = 0;
-      columnSpeeds[i] = random(2, 10);
-    }  
-  }
 
+
+void mouseClicked() {   //when lever clicked, spin reels
+  if (mouseX < 930 && mouseX > 750) {
+    if (mouseY > 100 && mouseY < 240) {
+      if(!spinning) {
+          u.spin_slots();
+          spin_timer = millis();
+          for (int i = 0; i < numImages; i++) {
+            changeCol[i] = 0;
+            columnSpeeds[i] = random(2, 10);
+          }  
+      }  
+   }
 }
-
-void mouseClicked() {
-
+  
   if (mouseX < 800 && mouseX > 700) {
     if (mouseY < 100 && mouseY > 0) {
       homeScreen = false;
@@ -113,10 +121,19 @@ void mouseClicked() {
   }
 }
 
+void leverImage() {
+  if (spinning) 
+    image(leverDown, 750, 100);
+  else 
+    image(leverUp, 750, 100);
+}
+
+
 void play_spin_animation() {
   float x = 0;
   float y = 0;
-
+  leverImage(); //lever animation
+  
   // Update column offsets and speeds
   if (spinning) {
     for (int i = 0; i < numImages; i++) {
