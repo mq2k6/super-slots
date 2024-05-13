@@ -37,7 +37,7 @@ class slots {
   
   float spin(float bet) {
     bet_info = "";
-    bet_info += "bet: \n";
+    bet_info += "bet: " + str(bet) + "\n";
     //println("bet:", bet);
     fill_machine();
     return check_win(bet);
