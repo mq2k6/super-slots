@@ -7,7 +7,7 @@ PFont calistoga, abeezee;
 
 ArrayList<symbol> ALL_SYMBOLS;
 slots s;
-user u;
+userTemp u;
 String bet_info = "";
 //code
 int numImages = 9;
@@ -29,10 +29,48 @@ void setup() {
 
   calistoga = createFont("Calistoga-Regular.ttf", 80);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
-
-  frameRate(10);
   size(1000, 700);
+  size(1000, 700);
+  esrbRating = loadImage("esrbRating.png");
+  gameLogo = loadImage("gameLogo.png");
+  publisherLogo = loadImage("publisherLogo.png");
+  FAQbackground = loadImage("FAQbackground.png");
+  engineLogo = loadImage("engineLogo.png");
+  startButton = loadImage("startButton.png");
+  introBackground = loadImage("introBackground.jpg");
+  loginBackground = loadImage("loginBackground.jpg");
+  usernameTextField = loadImage("usernameTextField.png");
+  loginButton = loadImage("loginButton.png");
+  FAQbanner = loadImage("FAQbanner.png");
+  FAQtextField = loadImage("FAQtextField.png");
+  clearProgressButton = loadImage("clearProgressButton.png");
+  confirmCancelButton = loadImage("confirmCancelButton.png");
+  progress = loadStrings("progress.txt");
+  calistoga = createFont("Calistoga-Regular.ttf", 50);
+  abeezee = createFont("ABeeZee-Regular.ttf", 24);
 
+
+  gameLogo.resize(350, 280);
+  startButton.resize(int(300 / 1.5), int(119 / 1.5));
+  introBackground.resize(int(2490 / 2.48), int(1960 / 2.48));
+  esrbRating.resize(225 / 2, 300 / 2);
+  publisherLogo.resize(800 / 3, 265 / 3);
+  engineLogo.resize(650 / 3, 218 / 3);
+  loginBackground.resize(int(1920 / 1.8), int(1440 / 1.8));
+  usernameTextField.resize(int(300 / 1.3), int(92 / 1.3));
+  loginButton.resize(int(308 / 2), int(114 / 2));
+  clearProgressButton.resize(int(472 / 2), int(282 / 2));
+  confirmCancelButton.resize(int(458 / 3), int(208 / 3));
+  FAQtextField.resize(int(689 / 1.2), int(400 / 1.2));
+
+  if (progress.length > 0) {
+    username = progress[0];
+    usernameLength = username.length();
+    cash = float(progress[1]);
+    displayBank = displayBank.substring(0, displayBank.length() - 1);
+    displayBank += nf(float(progress[1]), 0, 2);
+    showClearProgress = true;
+  }
   createGUI();
 
   if (homeScreen == true) {
@@ -67,7 +105,7 @@ void setup() {
       }
     }
     s = new slots(colNum);
-    u = new user("Joe", 1000);
+    u = new userTemp("Joe", 1000);
 
     leverUp = loadImage("leverUp.jpg");
     leverUp.resize(200, 0);
@@ -105,7 +143,7 @@ void setup() {
     }
   }
   s = new slots(colNum);
-  u = new user("Joe", 1000);
+  u = new userTemp("Joe", 1000);
 
   //lever images
   leverUp = loadImage("leverUp.jpg");
@@ -126,12 +164,25 @@ void set_slots() {
 }
 
 void draw() {
-  background(255);
+  background(0);
   fill(0);
-  circle(850, 500, 50);
-  play_spin_animation();
-  if (spinning == false) {
-    draw_bet_info();
+  //circle(850, 500, 50);
+  if (!logoComplete) {
+    introScreen();
+  }
+  if (logoComplete && !iconsComplete) {
+    introIcons();
+  }
+  if (iconsComplete && !loginComplete) {
+    login();
+  }
+  
+  if (loginComplete) {
+    background(255);
+    play_spin_animation();
+    if (spinning == false) {
+      draw_bet_info();
+    }
   }
 }
 
@@ -172,6 +223,7 @@ void leverImage() {
 
 
 void play_spin_animation() {
+  frameRate(10);
   float x = 0;
   float y = 0;
   leverImage(); //lever animation

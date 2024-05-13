@@ -1,29 +1,26 @@
-class user {
-  String name;
-  float balance;
+class User {
+
+  String username = "";
+  float cash;
+  int usernameLength;
   
-  float bet = 10;
   
-  user(String n, float b) {
-    name = n;
-    balance = b;
+  User(String u, float c) {
+    this.username = u;
+    this.cash = c;
+    this.usernameLength = u.length();
   }
   
-  void spin_slots() {
-    if(balance >= bet) {
-      balance += s.spin(bet);
-      spinning = true;
-      balance -= bet;
-      bet_info += "balance: " + str(balance) + "\n";
-      println("balance:", balance);
-    }
+  void saveProgress() {
+    String[] stats = {username, str(cash)};
+    saveStrings("progress.txt", stats);
+    progress = loadStrings("progress.txt");
   }
   
-  void set_bet(float b) {
-    bet = b;
+  void clearProgress() {
+    String[] stats = {};
+    saveStrings("progress.txt", stats);
+    progress = loadStrings("progress.txt");
   }
   
-  void save_game() {
-  
-  }
 }
