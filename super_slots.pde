@@ -39,11 +39,11 @@ void setup() {
 
     ALL_SYMBOLS = new ArrayList<symbol>();
 
-    ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
-    ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
-    ALL_SYMBOLS.add(new symbol("2.png", "c", 1.35));
-    ALL_SYMBOLS.add(new symbol("3.png", "d", 1.25));
-    ALL_SYMBOLS.add(new symbol("4.png", "e", 1.5));
+    ALL_SYMBOLS.add(new symbol("0.jpg", "a", 5));
+    ALL_SYMBOLS.add(new symbol("1.jpg", "b", 2));
+    ALL_SYMBOLS.add(new symbol("2.jpg", "c", 1.35));
+    ALL_SYMBOLS.add(new symbol("3.jpg", "d", 1.25));
+    ALL_SYMBOLS.add(new symbol("4.jpg", "e", 1.5));
 
 
     numImages = ALL_SYMBOLS.size();
@@ -51,7 +51,7 @@ void setup() {
 
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
-        symbols[i][j] = loadImage(i+".png");
+        symbols[i][j] = loadImage(i+".jpg");
         symbols[i][j].resize(150, 150);
       }
     }
@@ -69,9 +69,9 @@ void setup() {
     s = new slots(colNum);
     u = new user("Joe", 1000);
 
-    leverUp = loadImage("leverUp.png");
+    leverUp = loadImage("leverUp.jpg");
     leverUp.resize(200, 0);
-    leverDown = loadImage("leverDown.png");
+    leverDown = loadImage("leverDown.jpg");
     leverDown.resize(200, 0);
   } else if (faqScreen == true) {
     drawFaqScreen();
@@ -79,17 +79,17 @@ void setup() {
 
   ALL_SYMBOLS = new ArrayList<symbol>();
 
-  ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
-  ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
-  ALL_SYMBOLS.add(new symbol("2.png", "c", 1.35));
-  ALL_SYMBOLS.add(new symbol("3.png", "d", 1.25));
-  ALL_SYMBOLS.add(new symbol("4.png", "e", 1.5));
+  ALL_SYMBOLS.add(new symbol("0.jpg", "a", 5));
+  ALL_SYMBOLS.add(new symbol("1.jpg", "b", 2));
+  ALL_SYMBOLS.add(new symbol("2.jpg", "c", 1.35));
+  ALL_SYMBOLS.add(new symbol("3.jpg", "d", 1.25));
+  ALL_SYMBOLS.add(new symbol("4.jpg", "e", 1.5));
 
   numImages = ALL_SYMBOLS.size();
 
   for (int i=0; i<numImages; i++) {
     for (int j=0; j<numImages; j++) {
-      symbols[i][j] = loadImage(i+".png");
+      symbols[i][j] = loadImage(i+".jpg");
       symbols[i][j].resize(150, 150);
     }
   }
