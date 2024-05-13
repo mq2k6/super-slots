@@ -158,18 +158,18 @@ void mouseClicked() {   //when lever clicked, spin reels
       columnSpeeds[i] = random(2, 10);
     }
   }
-}
-}
+
   if (mouseX < 800 && mouseX > 700) {
-  if (mouseY < 100 && mouseY > 0) {
-    homeScreen = false;
-    faqScreen = true;
+    if (mouseY < 100 && mouseY > 0) {
+      homeScreen = false;
+      faqScreen = true;
+    }
   }
 }
-}
+
 
 void leverImage() {
-  if (spinning)
+  if (spinning) 
     image(leverDown, 750, 100);
   else
     image(leverUp, 750, 100);
