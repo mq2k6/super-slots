@@ -76,17 +76,17 @@ void setup() {
   if (homeScreen == true) {
 
     ALL_SYMBOLS = new ArrayList<symbol>();
-    ALL_SYMBOLS.add(new symbol("0.jpg", "a", 5));
-    ALL_SYMBOLS.add(new symbol("1.jpg", "b", 2));
-    ALL_SYMBOLS.add(new symbol("2.jpg", "c", 1.35));
-    ALL_SYMBOLS.add(new symbol("3.jpg", "d", 1.25));
-    ALL_SYMBOLS.add(new symbol("4.jpg", "e", 1.5));
+    ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
+    ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
+    ALL_SYMBOLS.add(new symbol("2.png", "c", 1.35));
+    ALL_SYMBOLS.add(new symbol("3.png", "d", 1.25));
+    ALL_SYMBOLS.add(new symbol("4.png", "e", 1.5));
     numImages = ALL_SYMBOLS.size();
 
 
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
-        symbols[i][j] = loadImage(i+".jpg"); //load symbols (in reels) images (named 0 to 8) in 2d array 
+        symbols[i][j] = loadImage(i+".png"); //load symbols (in reels) images (named 0 to 8) in 2d array 
         symbols[i][j].resize(150, 150);
       }
     }
@@ -104,9 +104,9 @@ void setup() {
     s = new slots(colNum);
     u = new userTemp("Joe", 1000);
 
-    leverUp = loadImage("leverUp.jpg");
+    leverUp = loadImage("leverUp.png");
     leverUp.resize(200, 0);
-    leverDown = loadImage("leverDown.jpg");
+    leverDown = loadImage("leverDown.png");
     leverDown.resize(200, 0); 
   }
   
@@ -141,7 +141,7 @@ void draw() {
   }
    
   if (loginComplete) {   //start slots once login button is preesed
-    background(255);
+    image(FAQbackground, 0,0);
     play_spin_animation();
     if (spinning == false) {
       draw_bet_info();
