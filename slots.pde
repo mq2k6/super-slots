@@ -76,6 +76,7 @@ class slots {
     bet_info += "wins: " + str(wins) + "\n";
     //println("wins:", wins);
     float payout = calc_payout(wins, bet, winners);
+    
     bet_info += "payout: " + str(payout) + "\n";
     //println("payout", payout);
     //println();

@@ -9,7 +9,7 @@ ArrayList<symbol> ALL_SYMBOLS;
 slots s;
 user u;
 String bet_info = "";
-
+//code
 int numImages = 9;
 
 int colNum = 3;
