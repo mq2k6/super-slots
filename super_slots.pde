@@ -13,7 +13,7 @@ String bet_info = "";
 int numImages = 9;
 
 int colNum = 3;
-PImage[][] symbols = new PImage[numImages][numImages];
+PImage[][] symbols = new PImage[numImages][numImages]; 
 PImage leverUp, leverDown;
 
 boolean spinning = false;
@@ -76,20 +76,17 @@ void setup() {
   if (homeScreen == true) {
 
     ALL_SYMBOLS = new ArrayList<symbol>();
-
     ALL_SYMBOLS.add(new symbol("0.jpg", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.jpg", "b", 2));
     ALL_SYMBOLS.add(new symbol("2.jpg", "c", 1.35));
     ALL_SYMBOLS.add(new symbol("3.jpg", "d", 1.25));
     ALL_SYMBOLS.add(new symbol("4.jpg", "e", 1.5));
-
-
     numImages = ALL_SYMBOLS.size();
 
 
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
-        symbols[i][j] = loadImage(i+".jpg");
+        symbols[i][j] = loadImage(i+".jpg"); //load symbols (in reels) images (named 0 to 8) in 2d array 
         symbols[i][j].resize(150, 150);
       }
     }
@@ -110,46 +107,12 @@ void setup() {
     leverUp = loadImage("leverUp.jpg");
     leverUp.resize(200, 0);
     leverDown = loadImage("leverDown.jpg");
-    leverDown.resize(200, 0);
-  } else if (faqScreen == true) {
+    leverDown.resize(200, 0); 
+  }
+  
+  else if (faqScreen == true) {
     drawFaqScreen();
   }
-
-  ALL_SYMBOLS = new ArrayList<symbol>();
-
-  ALL_SYMBOLS.add(new symbol("0.jpg", "a", 5));
-  ALL_SYMBOLS.add(new symbol("1.jpg", "b", 2));
-  ALL_SYMBOLS.add(new symbol("2.jpg", "c", 1.35));
-  ALL_SYMBOLS.add(new symbol("3.jpg", "d", 1.25));
-  ALL_SYMBOLS.add(new symbol("4.jpg", "e", 1.5));
-
-  numImages = ALL_SYMBOLS.size();
-
-  for (int i=0; i<numImages; i++) {
-    for (int j=0; j<numImages; j++) {
-      symbols[i][j] = loadImage(i+".jpg");
-      symbols[i][j].resize(150, 150);
-    }
-  }
-
-  // Shuffle the images
-  for (int i = 0; i < numImages; i++) {
-    for (int j = 0; j < numImages; j++) {
-      int randomI = int(random(numImages));
-      int randomJ = int(random(numImages));
-      PImage temp = symbols[i][j];
-      symbols[i][j] = symbols[randomI][randomJ];
-      symbols[randomI][randomJ] = temp;
-    }
-  }
-  s = new slots(colNum);
-  u = new userTemp("Joe", 1000);
-
-  //lever images
-  leverUp = loadImage("leverUp.jpg");
-  leverUp.resize(200, 0);
-  leverDown = loadImage("leverDown.jpg");
-  leverDown.resize(200, 0);
 }
 
 //set symbols to match the 2d ArrayList in slot class
@@ -176,8 +139,8 @@ void draw() {
   if (iconsComplete && !loginComplete) {
     login();
   }
-  
-  if (loginComplete) {
+   
+  if (loginComplete) {   //start slots once login button is preesed
     background(255);
     play_spin_animation();
     if (spinning == false) {
@@ -239,7 +202,7 @@ void play_spin_animation() {
         columnSpeeds[i] = random(2, 10); // Set a new random speed
       }
     }
-    if (millis() - spin_timer >= spin_time) {
+    if (millis() - spin_timer >= spin_time) {   //auto stop reels
       spinning = false;
       set_slots();
     }
@@ -248,14 +211,13 @@ void play_spin_animation() {
   // Draw the images
   for (int i=0; i <3; i++) {
     for (int j=0; j<colNum; j++) {
-      if (spinning) {
+      if (spinning) 
         image(symbols[i][(int(j + changeCol[j])) % numImages], x, y);
-      } else {
-        image(symbols[i][j], x, y);
-      }
+       else 
+        image(symbols[i][j], x, y); 
       x += 150;
     }
-    x = 0;
+    x = 0;    //standard 2d array nested forloop
     y += 150;
   }
 }
