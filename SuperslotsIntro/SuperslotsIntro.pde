@@ -64,9 +64,6 @@ void draw() {
   if (iconsComplete && !loginComplete) {
     login();
   }
-  if (loginComplete && !FAQcomplete) {
-    FAQ();
-  }
 }
 
 void introScreen() {
