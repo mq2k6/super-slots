@@ -108,9 +108,9 @@ void setup() {
   u = new user("Joe", 1000);
 
   //lever images
-  leverUp = loadImage("leverUp.png");
+  leverUp = loadImage("leverUp.jpg");
   leverUp.resize(200, 0);
-  leverDown = loadImage("leverDown.png");
+  leverDown = loadImage("leverDown.jpg");
   leverDown.resize(200, 0);
 }
 
