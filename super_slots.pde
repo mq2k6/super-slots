@@ -138,8 +138,8 @@ void draw() {
 
 
 void mouseClicked() {   //when lever clicked, spin reels
-  if (mouseX < (150*colNum +180) && mouseX > 150*colNum) {   //180 width
-    if (mouseY > 100 && mouseY < 240) {    // 140 height
+  if (mouseX < (150*colNum +180) && mouseX > 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
+    if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
         u.spin_slots();
         spin_timer = millis();
