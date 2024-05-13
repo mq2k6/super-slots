@@ -219,6 +219,7 @@ void leverImage() {
     image(leverUp, 150*colNum, 100);
   strokeWeight(10);
   line(150*colNum, 0, 150*colNum, 450);
+  line(0, 150*3, 150*colNum, 150*3); 
 }
 
 
