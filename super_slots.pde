@@ -138,8 +138,8 @@ void draw() {
 
 
 void mouseClicked() {   //when lever clicked, spin reels
-  if (mouseX < 930 && mouseX > 750) {
-    if (mouseY > 100 && mouseY < 240) {
+  if (mouseX < (150*colNum +180) && mouseX > 150*colNum) {   //180 width
+    if (mouseY > 100 && mouseY < 240) {    // 140 height
       if (!spinning) {
         u.spin_slots();
         spin_timer = millis();
@@ -163,11 +163,11 @@ void mouseClicked() {   //when lever clicked, spin reels
 
 void leverImage() {
   if (spinning) 
-    image(leverDown, 750, 100);
+    image(leverDown, 150*colNum, 100);
   else
-    image(leverUp, 750, 100);
+    image(leverUp, 150*colNum, 100);
   strokeWeight(10);
-  line(760, 0, 760, 450);
+  line(150*colNum, 0, 150*colNum, 450);
 }
 
 
