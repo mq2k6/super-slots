@@ -8,6 +8,7 @@ PFont calistoga, abeezee;
 ArrayList<symbol> ALL_SYMBOLS;
 slots s;
 user u;
+String bet_info = "";
 
 //inaccurate
 int numImages = 9;
@@ -95,6 +96,9 @@ void set_slots() {
 void draw() {
   background(255);
   play_spin_animation();
+  if(spinning == false) {
+    draw_bet_info();  
+  }
 }
 
 
@@ -165,6 +169,11 @@ void play_spin_animation() {
   }
 }
 
+
+void draw_bet_info() {
+  fill(0,0,0);
+  text(bet_info, 500,500);
+}
 
 void drawFaqScreen() {
   textFont(calistoga);
