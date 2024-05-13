@@ -150,14 +150,7 @@ void mouseClicked() {   //when lever clicked, spin reels
       }
     }
   }
-  if (!spinning) {
-    u.spin_slots();
-    spin_timer = millis();
-    for (int i = 0; i < numImages; i++) {
-      changeCol[i] = 0;
-      columnSpeeds[i] = random(2, 10);
-    }
-  }
+ 
 
   if (mouseX < 800 && mouseX > 700) {
     if (mouseY < 100 && mouseY > 0) {
