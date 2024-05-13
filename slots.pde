@@ -36,7 +36,9 @@ class slots {
 
   
   float spin(float bet) {
-    println("bet:", bet);
+    bet_info = "";
+    bet_info += "bet: " + str(bet) + "\n";
+    //println("bet:", bet);
     fill_machine();
     return check_win(bet);
   }
@@ -71,10 +73,12 @@ class slots {
         }
       }
     }
-    println("wins:", wins);
+    bet_info += "wins: " + str(wins) + "\n";
+    //println("wins:", wins);
     float payout = calc_payout(wins, bet, winners);
-    println("payout", payout);
-    println();
+    bet_info += "payout: " + str(payout) + "\n";
+    //println("payout", payout);
+    //println();
     return payout;
 
   }  

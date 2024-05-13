@@ -14,6 +14,7 @@ class user {
       balance += s.spin(bet);
       spinning = true;
       balance -= bet;
+      bet_info += "balance: " + str(balance) + "\n";
       println("balance:", balance);
     }
   }
