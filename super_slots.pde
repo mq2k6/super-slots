@@ -10,9 +10,7 @@ slots s;
 user u;
 String bet_info = "";
 
-//inaccurate
 int numImages = 9;
-//lol
 
 int colNum = 3;
 PImage[][] symbols = new PImage[numImages][numImages];
@@ -78,6 +76,42 @@ void setup() {
   } else if (faqScreen == true) {
     drawFaqScreen();
   }
+
+  ALL_SYMBOLS = new ArrayList<symbol>();
+
+  ALL_SYMBOLS.add(new symbol("0.jpg", "a", 5));
+  ALL_SYMBOLS.add(new symbol("1.jpg", "b", 2));
+  ALL_SYMBOLS.add(new symbol("2.jpg", "c", 1.35));
+  ALL_SYMBOLS.add(new symbol("3.jpg", "d", 1.25));
+  ALL_SYMBOLS.add(new symbol("4.jpg", "e", 1.5));
+
+  numImages = ALL_SYMBOLS.size();
+
+  for (int i=0; i<numImages; i++) {
+    for (int j=0; j<numImages; j++) {
+      symbols[i][j] = loadImage(i+".jpg");
+      symbols[i][j].resize(150, 150);
+    }
+  }
+
+  // Shuffle the images
+  for (int i = 0; i < numImages; i++) {
+    for (int j = 0; j < numImages; j++) {
+      int randomI = int(random(numImages));
+      int randomJ = int(random(numImages));
+      PImage temp = symbols[i][j];
+      symbols[i][j] = symbols[randomI][randomJ];
+      symbols[randomI][randomJ] = temp;
+    }
+  }
+  s = new slots(colNum);
+  u = new user("Joe", 1000);
+
+  //lever images
+  leverUp = loadImage("leverUp.jpg");
+  leverUp.resize(200, 0);
+  leverDown = loadImage("leverDown.jpg");
+  leverDown.resize(200, 0);
 }
 
 //set symbols to match the 2d ArrayList in slot class
@@ -96,8 +130,8 @@ void draw() {
   fill(0);
   circle(850, 500, 50);
   play_spin_animation();
-  if(spinning == false) {
-    draw_bet_info();  
+  if (spinning == false) {
+    draw_bet_info();
   }
 }
 
@@ -116,13 +150,22 @@ void mouseClicked() {   //when lever clicked, spin reels
       }
     }
   }
-
-  if (mouseX < 800 && mouseX > 700) {
-    if (mouseY < 100 && mouseY > 0) {
-      homeScreen = false;
-      faqScreen = true;
+  if (!spinning) {
+    u.spin_slots();
+    spin_timer = millis();
+    for (int i = 0; i < numImages; i++) {
+      changeCol[i] = 0;
+      columnSpeeds[i] = random(2, 10);
     }
   }
+}
+}
+  if (mouseX < 800 && mouseX > 700) {
+  if (mouseY < 100 && mouseY > 0) {
+    homeScreen = false;
+    faqScreen = true;
+  }
+}
 }
 
 void leverImage() {
@@ -130,6 +173,8 @@ void leverImage() {
     image(leverDown, 750, 100);
   else
     image(leverUp, 750, 100);
+  strokeWeight(10);
+  line(760, 0, 760, 450);
 }
 
 
@@ -171,8 +216,8 @@ void play_spin_animation() {
 
 
 void draw_bet_info() {
-  fill(0,0,0);
-  text(bet_info, 500,500);
+  fill(0, 0, 0);
+  text(bet_info, 500, 500);
 }
 
 void drawFaqScreen() {
