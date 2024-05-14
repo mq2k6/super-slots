@@ -27,7 +27,7 @@ float[] columnSpeeds = new float[numImages];
 
 void setup() {
 
-  calistoga = createFont("Calistoga-Regular.ttf", 80);
+  calistoga = createFont("Calistoga-Regular.ttf", 50);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
   size(1200, 700);
   esrbRating = loadImage("esrbRating.png");
@@ -45,8 +45,6 @@ void setup() {
   clearProgressButton = loadImage("clearProgressButton.png");
   confirmCancelButton = loadImage("confirmCancelButton.png");
   progress = loadStrings("progress.txt");
-  calistoga = createFont("Calistoga-Regular.ttf", 50);
-  abeezee = createFont("ABeeZee-Regular.ttf", 24);
 
 
   gameLogo.resize(350, 280);
@@ -174,20 +172,25 @@ void mouseClicked() {   //when lever clicked, spin reels
 
 void leverImage() {
   if (spinning) {
-    image(leverDown, (width/colNum) + 25 + 150*colNum, 100);
+    image(leverDown, (width/colNum) + 150*colNum - 8, 100);
+    col_slider.setVisible(false);
   } else {
-    image(leverUp, (width/colNum) + 25 + 150*colNum, 100);
+    image(leverUp, (width/colNum) + 150*colNum - 8, 100);
+    col_slider.setVisible(true);
   }
-  strokeWeight(10);
-  line((width/colNum) + 150*colNum + 25, 0, (width/colNum) + 150*colNum + 25, 475);
-  line((width/colNum) - 25, 0, (width/colNum) - 25, 475);
-  line((width/colNum) - 25, 475, (width/colNum) + 150*colNum + 25, 475);
+  //strokeWeight(10);
+  //line((width/colNum) + 150*colNum, 0, (width/colNum) + 150*colNum, 475);
+  //line((width/colNum) - 50, 0, (width/colNum) - 50, 475);
+  //line((width/colNum) - 50, 475, (width/colNum) + 150*colNum, 475);
+  noStroke();
+  fill(0, 100);
+  rect((width/colNum) - 50, 0, 150*colNum+50, 475, 0, 0, 25, 25);
 }
 
 
 void play_spin_animation() {
   frameRate(30);
-  float x = (width/colNum)-1;
+  float x = (width/colNum)-25;
   float y = 0;
   leverImage(); //lever animation
 
@@ -210,13 +213,15 @@ void play_spin_animation() {
   // Draw the images
   for (int i=0; i <3; i++) {
     for (int j=0; j<colNum; j++) {
-      if (spinning)
+      if (spinning) {
         image(symbols[i][(int(j + changeCol[j])) % numImages], x, y);
-      else
+        delay(5);
+      } else {
         image(symbols[i][j], x, y);
+      }
       x += 150;
     }
-    x = (width/colNum)-1;    //standard 2d array nested forloop
+    x = (width/colNum)-25;    //standard 2d array nested forloop
     y += 150;
   }
 }
