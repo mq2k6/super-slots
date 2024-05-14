@@ -211,11 +211,12 @@ void play_spin_animation() {
   }
 
   // Draw the images
+  int delayMS = 5;
   for (int i=0; i <3; i++) {
     for (int j=0; j<colNum; j++) {
       if (spinning) {
         image(symbols[i][(int(j + changeCol[j])) % numImages], x, y);
-        delay(5);
+        delay(delayMS);
       } else {
         image(symbols[i][j], x, y);
       }
