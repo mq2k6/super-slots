@@ -2,7 +2,7 @@ class userTemp {
   String name;
   float balance;
   
-  float bet = 10;
+  float bet = 10 * colNum;
   
   userTemp(String n, float b) {
     name = n;

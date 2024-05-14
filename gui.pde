@@ -28,9 +28,13 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  col_slider = new GCustomSlider(this, 900, 0, 100, 40, "grey_blue");
+  col_slider = new GCustomSlider(this, 1056, 0, 144, 48, "grey_blue");
+  col_slider.setShowValue(true);
   col_slider.setLimits(3.0, 3.0, 5.0);
-  col_slider.setNumberFormat(G4P.DECIMAL, 2);
+  col_slider.setNbrTicks(3);
+  col_slider.setStickToTicks(true);
+  col_slider.setShowTicks(true);
+  col_slider.setNumberFormat(G4P.DECIMAL, 1);
   col_slider.setOpaque(false);
   col_slider.addEventHandler(this, "custom_slider1_change1");
 }
