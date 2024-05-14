@@ -49,7 +49,7 @@ void setup() {
 
   gameLogo.resize(350, 280);
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
-  introBackground.resize(int(2490 / 2.48), int(1960 / 2.48));
+  introBackground.resize(int(2490 / 2), int(1960 / 2));
   esrbRating.resize(225 / 2, 300 / 2);
   publisherLogo.resize(800 / 3, 265 / 3);
   engineLogo.resize(650 / 3, 218 / 3);
