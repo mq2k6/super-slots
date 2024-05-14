@@ -224,7 +224,7 @@ void play_spin_animation() {
 
 
 void draw_bet_info() {
-  fill(0, 0, 0);
+  fill(255);
   text(bet_info, 500, 500);
 }
 
