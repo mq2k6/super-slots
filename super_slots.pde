@@ -13,7 +13,7 @@ String bet_info = "";
 int numImages = 9;
 
 int colNum = 3;
-PImage[][] symbols = new PImage[numImages][numImages]; 
+PImage[][] symbols = new PImage[numImages][numImages];
 PImage leverUp, leverDown;
 
 boolean spinning = false;
@@ -29,8 +29,7 @@ void setup() {
 
   calistoga = createFont("Calistoga-Regular.ttf", 80);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
-  size(1000, 700);
-  size(1000, 700);
+  size(1200, 700);
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
@@ -86,7 +85,7 @@ void setup() {
 
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
-        symbols[i][j] = loadImage(i+".png"); //load symbols (in reels) images (named 0 to 8) in 2d array 
+        symbols[i][j] = loadImage(i+".png"); //load symbols (in reels) images (named 0 to 8) in 2d array
         symbols[i][j].resize(150, 150);
       }
     }
@@ -107,10 +106,8 @@ void setup() {
     leverUp = loadImage("leverUp.png");
     leverUp.resize(200, 0);
     leverDown = loadImage("leverDown.png");
-    leverDown.resize(200, 0); 
-  }
-  
-  else if (faqScreen == true) {
+    leverDown.resize(200, 0);
+  } else if (faqScreen == true) {
     drawFaqScreen();
   }
 }
@@ -139,9 +136,9 @@ void draw() {
   if (iconsComplete && !loginComplete) {
     login();
   }
-   
+
   if (loginComplete) {   //start slots once login button is preesed
-    image(FAQbackground, 0,0);
+    image(FAQbackground, 0, 0);
     play_spin_animation();
     if (spinning == false) {
       draw_bet_info();
@@ -152,7 +149,7 @@ void draw() {
 
 
 void mouseClicked() {   //when lever clicked, spin reels
-  if (mouseX < (150*colNum +180) && mouseX > 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
+  if (mouseX < ((width/colNum) + 150*colNum +180) && mouseX > (width/colNum) + 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
     if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
         u.spin_slots();
@@ -164,7 +161,7 @@ void mouseClicked() {   //when lever clicked, spin reels
       }
     }
   }
- 
+
 
   if (mouseX < 800 && mouseX > 700) {
     if (mouseY < 100 && mouseY > 0) {
@@ -176,19 +173,21 @@ void mouseClicked() {   //when lever clicked, spin reels
 
 
 void leverImage() {
-  if (spinning) 
-    image(leverDown, 150*colNum, 100);
-  else
-    image(leverUp, 150*colNum, 100);
+  if (spinning) {
+    image(leverDown, (width/colNum) + 25 + 150*colNum, 100);
+  } else {
+    image(leverUp, (width/colNum) + 25 + 150*colNum, 100);
+  }
   strokeWeight(10);
-  line(150*colNum, 0, 150*colNum, 450);
-  line(0, 150*3, 150*colNum, 150*3); 
+  line((width/colNum) + 150*colNum + 25, 0, (width/colNum) + 150*colNum + 25, 475);
+  line((width/colNum) - 25, 0, (width/colNum) - 25, 475);
+  line((width/colNum) - 25, 475, (width/colNum) + 150*colNum + 25, 475);
 }
 
 
 void play_spin_animation() {
-  frameRate(10);
-  float x = 0;
+  frameRate(30);
+  float x = (width/colNum)-1;
   float y = 0;
   leverImage(); //lever animation
 
@@ -211,13 +210,13 @@ void play_spin_animation() {
   // Draw the images
   for (int i=0; i <3; i++) {
     for (int j=0; j<colNum; j++) {
-      if (spinning) 
+      if (spinning)
         image(symbols[i][(int(j + changeCol[j])) % numImages], x, y);
-       else 
-        image(symbols[i][j], x, y); 
+      else
+        image(symbols[i][j], x, y);
       x += 150;
     }
-    x = 0;    //standard 2d array nested forloop
+    x = (width/colNum)-1;    //standard 2d array nested forloop
     y += 150;
   }
 }
