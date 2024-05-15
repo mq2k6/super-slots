@@ -1,5 +1,7 @@
 import g4p_controls.*;
 
+
+
 boolean homeScreen = true;
 boolean faqScreen = false;
 
@@ -7,7 +9,6 @@ PFont calistoga, abeezee;
 
 ArrayList<symbol> ALL_SYMBOLS;
 slots s;
-User u;
 
 String bet_info = "";
 //code
@@ -27,6 +28,9 @@ float[] columnSpeeds = new float[numImages];
 
 
 void setup() {
+
+  account = new User(username, cash);
+
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
@@ -100,7 +104,6 @@ void setup() {
       }
     }
     s = new slots(colNum);
-    u = new User("Joe", 500);
 
     leverUp = loadImage("leverUp.png");
     leverUp.resize(200, 0);
@@ -151,7 +154,7 @@ void mouseClicked() {   //when lever clicked, spin reels
   if (mouseX < ((width/colNum) + 150*colNum +180) && mouseX > (width/colNum) + 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
     if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
-        u.spin_slots();
+        account.spin_slots();
         spin_timer = millis();
         for (int i = 0; i < numImages; i++) {
           changeCol[i] = 0;

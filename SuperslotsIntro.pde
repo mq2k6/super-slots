@@ -3,11 +3,10 @@ boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClear
 int exposure = 50;
 String[] progress;
 String displayBank = "Cash: $0";
-String username = ""; 
-float cash; 
+String username = "";
+float cash;
 int usernameLength = 0;
 User account;
-
 
 void introScreen() {
   tint(exposure);
@@ -43,7 +42,7 @@ void introIcons() {
 }
 
 void login() {
-  account = new User(username, cash);
+
   tint(exposure);
   image(loginBackground, 0, 0);
   if (showClearProgress) {
@@ -90,7 +89,6 @@ void login() {
     loginComplete = true;
     account.saveProgress();
   }
-  
 }
 
 void keyPressed() {
@@ -99,7 +97,7 @@ void keyPressed() {
       username = username.substring(0, username.length() - 1);
       usernameLength--;
     } else if (usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
-      if (key != CODED) { 
+      if (key != CODED) {
         username += key;
         usernameLength++;
       }
