@@ -142,6 +142,10 @@ void draw() {
       draw_bet_info();
     }
   }
+  
+  if(!spinning) {
+    s.draw_lines();  
+  }
 }
 
 

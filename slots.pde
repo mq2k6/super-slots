@@ -1,6 +1,9 @@
 class slots {
   ArrayList<ArrayList<symbol>> machine;
   
+  //arraylist for lines that denote a win
+  ArrayList<line> winning_lines;
+  
   int columns;
   
   //constant variables for logic in check_surround()
@@ -13,6 +16,22 @@ class slots {
   slots(int c) {
     columns = c;
     setup_machine();
+    winning_lines = new ArrayList<line>();
+  }
+  
+  void draw_lines() {
+    
+    float x = (width/colNum);
+    float y = 75;
+    
+    strokeWeight(7);
+    stroke(255);
+    for(int i = 0; i < winning_lines.size(); ++i) {
+      //println("drew winning line");
+      PVector p1 = winning_lines.get(i).point_1;
+      PVector p2 = winning_lines.get(i).point_2;
+      line(p1.y * 150 + x + 50,p1.x * 150 + y,p2.y * 150 + x + 50,p2.x * 150 + y);
+    }
   }
   
   //setup 2d ArrayList
@@ -40,6 +59,8 @@ class slots {
     bet_info += "bet: " + str(bet) + "\n";
     //println("bet:", bet);
     fill_machine();
+    //reset ArrayList
+    winning_lines = new ArrayList<line>();
     return check_win(bet);
   }
   
@@ -62,16 +83,23 @@ class slots {
     ArrayList<symbol> winners = new ArrayList<symbol>();
     for(int i = 0; i < 3; ++i) {
       for(int j = 0; j < machine.get(i).size(); ++j) {
-        int common_symbols = check_surround(i, j, NONE, 1);
+        line new_l = new line(new PVector(i, j));
+        int common_symbols = check_surround(i, j, NONE, 1, new_l);
         if(common_symbols >= 3) {
           winners.add(machine.get(i).get(j));
           wins++;
+          
+          winning_lines.add(new_l);
+          
           //increase rewards if get more than three in a row
           if(common_symbols > 3) {
             wins += (common_symbols - 3) * 3;
           }
         }
       }
+    }
+    for(int i = 0; i < winning_lines.size(); ++i) {
+      println(winning_lines.get(i).point_1,winning_lines.get(i).point_2);
     }
     bet_info += "wins: " + str(wins) + "\n";
     //println("wins:", wins);
@@ -85,7 +113,7 @@ class slots {
   }  
   
   //uses recursion to check surrounding cells for the same symbol, and detect three in a row or more
-  int check_surround(int i, int j, String direction, int found) {
+  int check_surround(int i, int j, String direction, int found, line win_line) {
     
     //try all "forward" directions, to prevent from counting twice
     if(direction == NONE) {
@@ -93,7 +121,8 @@ class slots {
       //try catch for out of bounds error
       try {
         if(machine.get(i).get(j).id == machine.get(i).get(j + 1).id) {
-          return check_surround(i, j + 1, EAST, found + 1);
+          win_line.set_second_point(new PVector(i, j + 1));
+          return check_surround(i, j + 1, EAST, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -101,7 +130,8 @@ class slots {
 
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j + 1).id) {
-          return check_surround(i + 1, j + 1, SOUTH_EAST, found + 1);
+          win_line.set_second_point(new PVector(i + 1, j + 1));
+          return check_surround(i + 1, j + 1, SOUTH_EAST, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -109,7 +139,8 @@ class slots {
       
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j).id) {
-          return check_surround(i + 1, j, SOUTH, found + 1);
+          win_line.set_second_point(new PVector(i + 1, j));
+          return check_surround(i + 1, j, SOUTH, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -117,7 +148,8 @@ class slots {
       
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j - 1).id) {
-          return check_surround(i + 1, j - 1, SOUTH_WEST, found + 1);
+          win_line.set_second_point(new PVector(i + 1, j - 1));
+          return check_surround(i + 1, j - 1, SOUTH_WEST, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -127,7 +159,8 @@ class slots {
     if(direction == EAST) {
       try {
         if(machine.get(i).get(j).id == machine.get(i).get(j + 1).id) {
-          return check_surround(i, j + 1, EAST, found + 1);
+          win_line.set_second_point(new PVector(i, j + 1));
+          return check_surround(i, j + 1, EAST, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -135,7 +168,8 @@ class slots {
     } else if (direction == SOUTH_EAST) {
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j + 1).id) {
-          return check_surround(i + 1, j + 1, SOUTH_EAST, found + 1);
+          win_line.set_second_point(new PVector(i + 1, j + 1));
+          return check_surround(i + 1, j + 1, SOUTH_EAST, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -143,7 +177,8 @@ class slots {
     } else if (direction == SOUTH) {
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j).id) {
-          return check_surround(i + 1, j, SOUTH, found + 1);
+          win_line.set_second_point(new PVector(i + 1, j));
+          return check_surround(i + 1, j, SOUTH, found + 1, win_line);
         }  
       } catch (Exception e) {
       
@@ -152,7 +187,9 @@ class slots {
     } else if (direction == SOUTH_WEST) {
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j - 1).id) {
-          return check_surround(i + 1, j - 1, SOUTH_WEST, found + 1);
+          win_line.set_second_point(new PVector(i + 1, j - 1));
+          
+          return check_surround(i + 1, j - 1, SOUTH_WEST, found + 1, win_line);
         }  
       } catch (Exception e) {
       
