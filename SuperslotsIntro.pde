@@ -31,7 +31,7 @@ void introIcons() {
   image(publisherLogo, width / 2 - 225, height / 2);
   image(engineLogo, 15, height - 70);
   textSize(15);
-  text("Super Slots® involves chance. We advise players to play responsibly within their means.", 300, 610);
+  text("Super Slots® involves chance. We advise players to play responsibly within their means.", 300, 600);
   if (exposure >= 0.005) {
     exposure -= 0.0025;
   } else {
