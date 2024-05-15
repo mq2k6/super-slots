@@ -6,7 +6,6 @@ String displayBank = "Cash: $0";
 String username = "";
 float cash;
 int usernameLength = 0;
-User account;
 
 void introScreen() {
   tint(exposure);
@@ -94,7 +93,7 @@ void login() {
 void keyPressed() {
   if (iconsComplete && !loginComplete) {
     if (keyCode == BACKSPACE && usernameLength > 0) {
-      username = username.substring(0, username.length() - 1);
+      account.username = account.username.substring(0, account.username.length() - 1);
       usernameLength--;
     } else if (usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
       if (key != CODED) {
