@@ -31,7 +31,7 @@ float[] columnSpeeds = new float[numImages];
 
 void setup() {
 
-  account = new User(username, cash);
+  account = new User("", 0);
 
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
@@ -68,9 +68,8 @@ void setup() {
   FAQtextField.resize(int(689 / 1.2), int(400 / 1.2));
 
   if (progress.length > 0) {
-    username = progress[0];
-    usernameLength = username.length();
-    cash = float(progress[1]);
+    account.username = progress[0];
+    account.cash = float(progress[1]);
     displayBank = displayBank.substring(0, displayBank.length() - 1);
     displayBank += nf(float(progress[1]), 0, 2);
     showClearProgress = true;

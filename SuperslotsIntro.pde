@@ -3,9 +3,6 @@ boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClear
 int exposure = 50;
 String[] progress;
 String displayBank = "Cash: $0";
-String username = "";
-float cash;
-int usernameLength = 0;
 
 void introScreen() {
   tint(exposure);
@@ -73,7 +70,6 @@ void login() {
 
   if (mousePressed && mouseX > width / 2 - 76 && mouseX < width / 2 - 10 && mouseY > height / 2 + 225 && mouseY < height / 2 + 225 + confirmCancelButton.height && mouseX < width / 2 - 20 + confirmCancelButton.width / 2 && showConfirmCancel) {
     account.clearProgress();
-    account.usernameLength = 0;
     account.username = "";
     displayBank = "Cash: $0";
     showConfirmCancel = false;
@@ -84,7 +80,6 @@ void login() {
   }
 
   if ((keyPressed && key == ENTER && account.usernameLength > 0) || (mousePressed && mouseX > width / 2 - 77 && mouseX < width / 2 - 77 + loginButton.width && mouseY > height / 2 - 50 && mouseY < height / 2 - 50 + loginButton.height && account.usernameLength > 0)) {
-    background(0);
     loginComplete = true;
     account.saveProgress();
   }
@@ -94,8 +89,7 @@ void keyPressed() {
   if (iconsComplete && !loginComplete) {
     if (keyCode == BACKSPACE && account.usernameLength > 0) {
       account.username = account.username.substring(0, account.username.length() - 1);
-      account.usernameLength--;
-    } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
+      } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
       if (key != CODED) {
         account.username += key;
         account.usernameLength++;

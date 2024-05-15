@@ -4,16 +4,17 @@ class User {
   float cash;
   int usernameLength;
 
-  float bet = 10;
+  float bet;
 
   User(String u, float c) {
     this.username = u;
     this.cash = c;
     this.usernameLength = u.length();
+    this.bet = 10;
   }
 
   void saveProgress() {
-    String[] stats = {username, str(cash)};
+    String[] stats = {this.username, str(this.cash)};
     saveStrings("progress.txt", stats);
     progress = loadStrings("progress.txt");
   }
@@ -36,6 +37,6 @@ class User {
   }
 
   void set_bet(float b) {
-    bet = b;
+    this.bet = b;
   }
 }
