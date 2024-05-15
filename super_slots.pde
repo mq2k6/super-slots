@@ -1,13 +1,18 @@
 import g4p_controls.*;
 
-boolean homeScreen = true;
+
+
+boolean homeScreen = false;
 boolean faqScreen = false;
+boolean introScreen = true;
 
 PFont calistoga, abeezee;
 
 ArrayList<symbol> ALL_SYMBOLS;
+
 slots s;
-userTemp u;
+User account;
+
 String bet_info = "";
 //code
 int numImages = 9;
@@ -26,6 +31,9 @@ float[] columnSpeeds = new float[numImages];
 
 
 void setup() {
+
+  account = new User(username, cash);
+
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
@@ -53,7 +61,7 @@ void setup() {
   esrbRating.resize(225 / 2, 300 / 2);
   publisherLogo.resize(800 / 3, 265 / 3);
   engineLogo.resize(650 / 3, 218 / 3);
-  loginBackground.resize(int(1920 / 1.8), int(1440 / 1.8));
+  loginBackground.resize(1600, 1200);
   usernameTextField.resize(int(300 / 1.3), int(92 / 1.3));
   loginButton.resize(int(308 / 2), int(114 / 2));
   clearProgressButton.resize(int(472 / 2), int(282 / 2));
@@ -68,10 +76,10 @@ void setup() {
     displayBank += nf(float(progress[1]), 0, 2);
     showClearProgress = true;
   }
-  createGUI();
 
   if (homeScreen == true) {
 
+    createGUI();
     ALL_SYMBOLS = new ArrayList<symbol>();
     ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
@@ -99,7 +107,6 @@ void setup() {
       }
     }
     s = new slots(colNum);
-    u = new userTemp("Joe", 1000);
 
     leverUp = loadImage("leverUp.png");
     leverUp.resize(200, 0);
@@ -136,6 +143,7 @@ void draw() {
   }
 
   if (loginComplete) {   //start slots once login button is preesed
+    introScreen = false;
     image(FAQbackground, 0, 0);
     play_spin_animation();
     if (spinning == false) {
@@ -154,7 +162,7 @@ void mouseClicked() {   //when lever clicked, spin reels
   if (mouseX < ((width/colNum) + 150*colNum +180) && mouseX > (width/colNum) + 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
     if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
-        u.spin_slots();
+        account.spin_slots();
         spin_timer = millis();
         for (int i = 0; i < numImages; i++) {
           changeCol[i] = 0;

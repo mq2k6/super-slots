@@ -3,8 +3,8 @@ boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClear
 int exposure = 50;
 String[] progress;
 String displayBank = "Cash: $0";
-String username = ""; 
-float cash; 
+String username = "";
+float cash;
 int usernameLength = 0;
 
 void introScreen() {
@@ -30,7 +30,7 @@ void introIcons() {
   image(publisherLogo, width / 2 - 225, height / 2);
   image(engineLogo, 15, height - 70);
   textSize(15);
-  text("Super Slots® involves chance. We advise players to play responsibly within their means.", 300, 610);
+  text("Super Slots® involves chance. We advise players to play responsibly within their means.", 300, 600);
   if (exposure >= 0.005) {
     exposure -= 0.0025;
   } else {
@@ -41,7 +41,7 @@ void introIcons() {
 }
 
 void login() {
-  User account = new User(username, cash);
+
   tint(exposure);
   image(loginBackground, 0, 0);
   if (showClearProgress) {
@@ -73,8 +73,8 @@ void login() {
 
   if (mousePressed && mouseX > width / 2 - 76 && mouseX < width / 2 - 10 && mouseY > height / 2 + 225 && mouseY < height / 2 + 225 + confirmCancelButton.height && mouseX < width / 2 - 20 + confirmCancelButton.width / 2 && showConfirmCancel) {
     account.clearProgress();
-    usernameLength = 0;
-    username = "";
+    account.usernameLength = 0;
+    account.username = "";
     displayBank = "Cash: $0";
     showConfirmCancel = false;
     showClearProgress = false;
@@ -88,18 +88,17 @@ void login() {
     loginComplete = true;
     account.saveProgress();
   }
-  
 }
 
 void keyPressed() {
   if (iconsComplete && !loginComplete) {
-    if (keyCode == BACKSPACE && usernameLength > 0) {
-      username = username.substring(0, username.length() - 1);
-      usernameLength--;
-    } else if (usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
-      if (key != CODED) { 
-        username += key;
-        usernameLength++;
+    if (keyCode == BACKSPACE && account.usernameLength > 0) {
+      account.username = account.username.substring(0, account.username.length() - 1);
+      account.usernameLength--;
+    } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
+      if (key != CODED) {
+        account.username += key;
+        account.usernameLength++;
       }
     }
   }
