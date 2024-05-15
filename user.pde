@@ -20,6 +20,7 @@ class User {
   }
 
   void clearProgress() {
+    this.username = "";
     String[] stats = {};
     saveStrings("progress.txt", stats);
     progress = loadStrings("progress.txt");
