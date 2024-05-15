@@ -6,7 +6,6 @@ class User {
 
   float bet = 10;
 
-
   User(String u, float c) {
     this.username = u;
     this.cash = c;
@@ -34,7 +33,6 @@ class User {
       bet_info += "balance: " + str(this.cash) + "\n";
       println("balance:", this.cash);
     }
-    
   }
 
   void set_bet(float b) {

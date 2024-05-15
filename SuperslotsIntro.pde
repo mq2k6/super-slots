@@ -73,8 +73,8 @@ void login() {
 
   if (mousePressed && mouseX > width / 2 - 76 && mouseX < width / 2 - 10 && mouseY > height / 2 + 225 && mouseY < height / 2 + 225 + confirmCancelButton.height && mouseX < width / 2 - 20 + confirmCancelButton.width / 2 && showConfirmCancel) {
     account.clearProgress();
-    usernameLength = 0;
-    username = "";
+    account.usernameLength = 0;
+    account.username = "";
     displayBank = "Cash: $0";
     showConfirmCancel = false;
     showClearProgress = false;
@@ -92,13 +92,13 @@ void login() {
 
 void keyPressed() {
   if (iconsComplete && !loginComplete) {
-    if (keyCode == BACKSPACE && usernameLength > 0) {
+    if (keyCode == BACKSPACE && account.usernameLength > 0) {
       account.username = account.username.substring(0, account.username.length() - 1);
-      usernameLength--;
-    } else if (usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
+      account.usernameLength--;
+    } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
       if (key != CODED) {
-        username += key;
-        usernameLength++;
+        account.username += key;
+        account.usernameLength++;
       }
     }
   }
