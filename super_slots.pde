@@ -2,9 +2,8 @@ import g4p_controls.*;
 
 
 
-boolean homeScreen = false;
+boolean homeScreen = true;
 boolean faqScreen = false;
-boolean introScreen = true;
 
 PFont calistoga, abeezee;
 
@@ -143,7 +142,6 @@ void draw() {
   }
 
   if (loginComplete) {   //start slots once login button is preesed
-    introScreen = false;
     image(FAQbackground, 0, 0);
     play_spin_animation();
     if (spinning == false) {
@@ -151,9 +149,9 @@ void draw() {
     }
   }
   
-  if(!spinning) {
-    s.draw_lines();  
-  }
+  //if(!spinning) {
+  //  s.draw_lines();  
+  //}
 }
 
 
