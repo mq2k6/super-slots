@@ -6,6 +6,8 @@ String displayBank = "Cash: $0";
 String username = ""; 
 float cash; 
 int usernameLength = 0;
+User account;
+
 
 void introScreen() {
   tint(exposure);
@@ -41,7 +43,7 @@ void introIcons() {
 }
 
 void login() {
-  User account = new User(username, cash);
+  account = new User(username, cash);
   tint(exposure);
   image(loginBackground, 0, 0);
   if (showClearProgress) {

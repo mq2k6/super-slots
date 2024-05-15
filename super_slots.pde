@@ -7,7 +7,8 @@ PFont calistoga, abeezee;
 
 ArrayList<symbol> ALL_SYMBOLS;
 slots s;
-userTemp u;
+User u;
+
 String bet_info = "";
 //code
 int numImages = 9;
@@ -99,7 +100,7 @@ void setup() {
       }
     }
     s = new slots(colNum);
-    u = new userTemp("Joe", 1000);
+    u = new User("Joe", 500);
 
     leverUp = loadImage("leverUp.png");
     leverUp.resize(200, 0);
