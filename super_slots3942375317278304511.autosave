@@ -22,7 +22,6 @@ PImage leverUp, leverDown;
 
 boolean spinning = false;
 
-
 float spin_timer = -1; //used to count to spin_time
 float spin_time = 3000; //milliseconds
 
@@ -32,7 +31,7 @@ float[] columnSpeeds = new float[numImages];
 
 void setup() {
 
-  account = new User("", 0);
+  account = new User(username, cash);
 
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
@@ -77,8 +76,8 @@ void setup() {
   }
 
   if (homeScreen == true) {
+
     createGUI();
-    col_slider.setVisible(false);
     ALL_SYMBOLS = new ArrayList<symbol>();
     ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
@@ -142,7 +141,6 @@ void draw() {
   }
 
   if (loginComplete) {   //start slots once login button is preesed
-    col_slider.isVisible();
     image(FAQbackground, 0, 0);
     play_spin_animation();
     if (spinning == false) {
