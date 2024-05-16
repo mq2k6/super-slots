@@ -56,8 +56,8 @@ void login() {
   } else {
     text("Enter Username", width / 2 - 95, height / 2 - 115);
   }
+  println(account.username);
   fill(0);
-
   if (account.usernameLength == 0) {
     text("|", width / 2 - 95, height / 2 - 80);
   } else {

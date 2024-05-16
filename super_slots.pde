@@ -172,8 +172,8 @@ void mouseClicked() {   //when lever clicked, spin reels
   }
 
 
-  if (mouseX < 800 && mouseX > 700) {
-    if (mouseY < 100 && mouseY > 0) {
+  if (mousePressed && mouseX < 800 && mouseX > 700) {
+    if (mousePressed && mouseY < 100 && mouseY > 0) {
       homeScreen = false;
       faqScreen = true;
     }
