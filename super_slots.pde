@@ -180,6 +180,7 @@ void mouseClicked() {   //when lever clicked, spin reels
         for (int i = 0; i < numImages; i++) {
           changeCol[i] = 0;
           columnSpeeds[i] = random(2, 10);
+          
         }
       }
     }
@@ -190,6 +191,7 @@ void mouseClicked() {   //when lever clicked, spin reels
     if (mousePressed && mouseY < 100 && mouseY > 0) {
       homeScreen = false;
       faqScreen = true;
+      drawFaqScreen();
     }
   }
 }
