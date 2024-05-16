@@ -2,9 +2,12 @@ import g4p_controls.*;
 
 
 boolean homeScreen = true;
-boolean faqScreen = false;
 boolean out_of_money = false;
+<<<<<<< HEAD
 boolean bet_more = false;
+=======
+boolean showFAQbutton, showFAQbackButton, showFAQ;
+>>>>>>> 9de5d7fcb7ba82a426e32751801fb23fd5042aab
 
 PFont calistoga, abeezee;
 
@@ -21,7 +24,7 @@ int colNum = 3;
 //float betSlide = 10;  //for bet slider
 
 PImage[][] symbols = new PImage[numImages][numImages];
-PImage leverUp, leverDown;
+PImage leverUp, leverDown, faqButton;
 
 boolean spinning = false;
 
@@ -43,7 +46,7 @@ void setup() {
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
-  homeScreenBackground = loadImage("FAQbackground.png");
+  homeScreenBackground = loadImage("homeScreenBackground.png");
   engineLogo = loadImage("engineLogo.png");
   startButton = loadImage("startButton.png");
   introBackground = loadImage("introBackground.jpg");
@@ -54,6 +57,7 @@ void setup() {
   FAQtextField = loadImage("FAQtextField.png");
   FAQbutton = loadImage("faqButton.png");
   clearProgressButton = loadImage("clearProgressButton.png");
+  faqButton = loadImage("faqButton.png");
   confirmCancelButton = loadImage("confirmCancelButton.png");
   progress = loadStrings("progress.txt");
 
@@ -62,6 +66,7 @@ void setup() {
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
   introBackground.resize(int(2490 / 2), int(1960 / 2));
   esrbRating.resize(225 / 2, 300 / 2);
+  faqButton.resize(411 / 4, 456 / 4);
   publisherLogo.resize(800 / 3, 265 / 3);
   engineLogo.resize(650 / 3, 218 / 3);
   loginBackground.resize(1600, 1200);
@@ -146,8 +151,8 @@ void draw() {
     login();
   }
 
-  if (loginComplete && !faqScreen) {   //start slots once login button is preesed
-    
+  if (loginComplete && !showFAQ) {   //start slots once login button is preesed
+    showFAQbutton = true;
     col_slider.isVisible();
     //change_bet.isVisible();
     Change_BetLabel.isVisible();
@@ -162,9 +167,12 @@ void draw() {
     }
   }
   
-  if(faqScreen) {
-    drawFaqScreen();
+  if(showFAQ) {
+    showFAQbutton = false;
+    showFAQbackButton = true;
+    FAQ();
   }
+  
   
   if (out_of_money)
     text("need more money", width/2, 600);
@@ -214,13 +222,6 @@ void mouseClicked() {   //when lever clicked, spin reels
   }
 
 
-  if (mousePressed && mouseX < 800 && mouseX > 700) {
-    if (mousePressed && mouseY < 100 && mouseY > 0) {
-      homeScreen = false;
-      faqScreen = true;
-      drawFaqScreen();
-    }
-  }
 }
 
 
@@ -230,9 +231,12 @@ void leverImage() {
     col_slider.setVisible(false);
     //change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
+<<<<<<< HEAD
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
 
+=======
+>>>>>>> 9de5d7fcb7ba82a426e32751801fb23fd5042aab
   } else {
     image(leverUp, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(true);
@@ -253,7 +257,12 @@ void leverImage() {
 
 
 void play_spin_animation() {
-  image(FAQbutton, 25, 15);
+  if(showFAQbutton) {
+    image(faqButton, 25, 15);
+    //if(mousePressed) {
+    //  showFAQ = true;
+    //}
+  }
   frameRate(30);
   float x = (width/colNum)-25;
   float y = 0;    
@@ -299,7 +308,10 @@ void draw_bet_info() {
   text(bet_info, 500, 500);
 }
 
-void drawFaqScreen() {
+void FAQ() {
+  col_slider.setVisible(false);
+  change_bet.setVisible(false);
+  Change_BetLabel.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
   image(FAQbanner, width / 2 - 200, 50);
