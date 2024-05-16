@@ -33,7 +33,7 @@ class User {
       spinning = false;
     }
     
-    if (this.cash >= bet) {
+    if (this.cash >= bet) { 
       this.cash += s.spin(bet);
       spinning = true;
       this.cash -= bet;

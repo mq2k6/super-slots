@@ -86,6 +86,7 @@ void setup() {
     col_slider.setVisible(false);
     //change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
+    Change_Col.setVisible(false);
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
     ALL_SYMBOLS = new ArrayList<symbol>();
@@ -153,6 +154,7 @@ void draw() {
     col_slider.isVisible();
     //change_bet.isVisible();
     Change_BetLabel.isVisible();
+    Change_Col.isVisible();
     increaseBet.isVisible();
     decreaseBet.isVisible();
     image(homeScreenBackground, 0, 0);
@@ -162,6 +164,7 @@ void draw() {
     if (spinning == false) {
       draw_bet_info();
       account.saveProgress();
+      text(round(account.bet), 1150, 220);
     }
   }
   
@@ -173,12 +176,12 @@ void draw() {
   
   
   if (out_of_money)
-    text("need more money", width/2, 600);
+    text("need more money", 1050, 355);
   else
     out_of_money = false;
     
   if (bet_more)
-    text("bet more", width/2, 600);
+    text("bet more", 1120, 355);
   else
     bet_more = false;
   
@@ -228,6 +231,7 @@ void leverImage() {
     image(leverDown, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(false);
     //change_bet.setVisible(false);
+    Change_Col.setVisible(false);
     Change_BetLabel.setVisible(false);
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
@@ -236,6 +240,7 @@ void leverImage() {
     image(leverUp, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(true);
     //change_bet.setVisible(true);
+    Change_Col.setVisible(true);
     Change_BetLabel.setVisible(true);
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
@@ -304,6 +309,7 @@ void FAQ() {
   col_slider.setVisible(false);
   change_bet.setVisible(false);
   Change_BetLabel.setVisible(false);
+  Change_Col.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
   image(FAQbanner, width / 2 - 200, 50);
