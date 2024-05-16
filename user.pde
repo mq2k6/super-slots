@@ -11,6 +11,7 @@ class User {
     this.cash = c;
     this.usernameLength = u.length();
     this.bet = 10;
+    
   }
 
   void saveProgress() {
@@ -27,7 +28,9 @@ class User {
   }
 
   void spin_slots() {
-    this.bet = 10 * col_slider.getValueI();
+    //this.bet = 10 * col_slider.getValueI();
+    println("cash is", this.cash);
+    println("betting", bet);
     if (this.cash >= bet) {
       this.cash += s.spin(bet);
       spinning = true;
@@ -35,9 +38,11 @@ class User {
       bet_info += "balance: " + str(this.cash) + "\n";
       println("balance:", this.cash);
     }
+    else 
+      game_over = true;
   }
 
   void set_bet(float b) {
-    this.bet = b;
+      this.bet = b;
   }
 }

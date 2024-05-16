@@ -1,9 +1,9 @@
 import g4p_controls.*;
 
 
-
 boolean homeScreen = true;
 boolean faqScreen = false;
+boolean game_over = false;
 
 PFont calistoga, abeezee;
 
@@ -17,6 +17,8 @@ String bet_info = "";
 int numImages = 9;
 
 int colNum = 3;
+float betSlide = 10;
+
 PImage[][] symbols = new PImage[numImages][numImages];
 PImage leverUp, leverDown;
 
@@ -32,7 +34,7 @@ float[] columnSpeeds = new float[numImages];
 
 void setup() {
 
-  account = new User("", 0);
+  account = new User("", 1000);
 
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
@@ -79,6 +81,8 @@ void setup() {
   if (homeScreen == true) {
     createGUI();
     col_slider.setVisible(false);
+    change_bet.setVisible(false);
+    Change_BetLabel.setVisible(false);
     ALL_SYMBOLS = new ArrayList<symbol>();
     ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
@@ -143,16 +147,23 @@ void draw() {
 
   if (loginComplete) {   //start slots once login button is preesed
     col_slider.isVisible();
+    change_bet.isVisible();
+    Change_BetLabel.isVisible();
     image(FAQbackground, 0, 0);
     play_spin_animation();
+    
     if (spinning == false) {
       draw_bet_info();
+      account.saveProgress();
     }
   }
   
-  //if(!spinning) {
-  //  s.draw_lines();  
-  //}
+  if (game_over)
+    gameOver();
+  
+  if(!spinning) {
+    s.draw_lines();  
+  }
 }
 
 
@@ -162,6 +173,7 @@ void mouseClicked() {   //when lever clicked, spin reels
     if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
         account.spin_slots();
+        println("lever clicked");
         spin_timer = millis();
         for (int i = 0; i < numImages; i++) {
           changeCol[i] = 0;
@@ -185,9 +197,15 @@ void leverImage() {
   if (spinning) {
     image(leverDown, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(false);
+    change_bet.setVisible(false);
+    Change_BetLabel.setVisible(false);
+
   } else {
     image(leverUp, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(true);
+    change_bet.setVisible(true);
+    Change_BetLabel.setVisible(true);
+
   }
   //strokeWeight(10);
   //line((width/colNum) + 150*colNum, 0, (width/colNum) + 150*colNum, 475);
@@ -254,4 +272,9 @@ void drawFaqScreen() {
   image(FAQtextField, width / 2 - 287, 250);
   textFont(abeezee);
   //text("", ) FAQ Text
+}
+
+
+void gameOver() {
+  text("Get more money", width/2, 600);
 }
