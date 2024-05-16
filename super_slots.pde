@@ -62,6 +62,7 @@ void setup() {
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
   introBackground.resize(int(2490 / 2), int(1960 / 2));
   esrbRating.resize(225 / 2, 300 / 2);
+  faqButton.resize(411 / 4, 456 / 4);
   publisherLogo.resize(800 / 3, 265 / 3);
   engineLogo.resize(650 / 3, 218 / 3);
   loginBackground.resize(1600, 1200);
@@ -220,9 +221,9 @@ void leverImage() {
 void play_spin_animation() {
   if(showFAQbutton) {
     image(faqButton, 25, 15);
-    if(mousePressed) {
-      showFAQ = true;
-    }
+    //if(mousePressed) {
+    //  showFAQ = true;
+    //}
   }
   frameRate(30);
   float x = (width/colNum)-25;
