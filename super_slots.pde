@@ -3,7 +3,7 @@ import g4p_controls.*;
 
 boolean homeScreen = true;
 boolean faqScreen = false;
-boolean game_over = false;
+boolean out_of_money = false;
 
 PFont calistoga, abeezee;
 
@@ -158,8 +158,8 @@ void draw() {
     }
   }
   
-  if (game_over)
-    gameOver();
+  if (out_of_money)
+    outOfMoney();
   
   if(!spinning) {
     s.draw_lines();  
@@ -275,6 +275,6 @@ void drawFaqScreen() {
 }
 
 
-void gameOver() {
+void outOfMoney() {
   text("Get more money", width/2, 600);
 }

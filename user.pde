@@ -35,11 +35,11 @@ class User {
       this.cash += s.spin(bet);
       spinning = true;
       this.cash -= bet;
-      bet_info += "balance: " + str(this.cash) + "\n";
+      bet_info += "balance: " + str(round(this.cash)) + "\n";
       println("balance:", this.cash);
     }
     else 
-      game_over = true;
+      out_of_money = true;
   }
 
   void set_bet(float b) {
