@@ -2,8 +2,8 @@ import g4p_controls.*;
 
 
 boolean homeScreen = true;
-boolean faqScreen = false;
 boolean out_of_money = false;
+boolean showFAQbutton, showFAQbackButton, showFAQ;
 
 PFont calistoga, abeezee;
 
@@ -20,7 +20,7 @@ int colNum = 3;
 float betSlide = 10;
 
 PImage[][] symbols = new PImage[numImages][numImages];
-PImage leverUp, leverDown;
+PImage leverUp, leverDown, faqButton;
 
 boolean spinning = false;
 
@@ -53,6 +53,7 @@ void setup() {
   FAQtextField = loadImage("FAQtextField.png");
   FAQbutton = loadImage("faqButton.png");
   clearProgressButton = loadImage("clearProgressButton.png");
+  faqButton = loadImage("faqButton.png");
   confirmCancelButton = loadImage("confirmCancelButton.png");
   progress = loadStrings("progress.txt");
 
@@ -143,8 +144,8 @@ void draw() {
     login();
   }
 
-  if (loginComplete) {   //start slots once login button is preesed
-    
+  if (loginComplete && !showFAQ) {   //start slots once login button is preesed
+    showFAQbutton = true;
     col_slider.isVisible();
     change_bet.isVisible();
     Change_BetLabel.isVisible();
@@ -155,6 +156,12 @@ void draw() {
       draw_bet_info();
       account.saveProgress();
     }
+  }
+  
+  if(showFAQ) {
+    showFAQbutton = false;
+    showFAQbackButton = true;
+    FAQ();
   }
   
   
@@ -211,6 +218,12 @@ void leverImage() {
 
 
 void play_spin_animation() {
+  if(showFAQbutton) {
+    image(faqButton, 25, 15);
+    if(mousePressed) {
+      showFAQ = true;
+    }
+  }
   frameRate(30);
   float x = (width/colNum)-25;
   float y = 0;
@@ -256,6 +269,9 @@ void draw_bet_info() {
 }
 
 void FAQ() {
+  col_slider.setVisible(false);
+  change_bet.setVisible(false);
+  Change_BetLabel.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
   image(FAQbanner, width / 2 - 200, 50);
