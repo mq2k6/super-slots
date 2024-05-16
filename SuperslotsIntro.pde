@@ -2,7 +2,7 @@ PImage esrbRating, gameLogo, publisherLogo, engineLogo, introBackground, startBu
 boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress;
 int exposure = 50;
 String[] progress;
-String displayBank = "Cash: $0";
+String displayBank = "Cash: $1000.00";
 
 void introScreen() {
   tint(exposure);
@@ -88,9 +88,11 @@ void keyPressed() {
     account.usernameLength = account.username.length();
     if (keyCode == BACKSPACE && account.usernameLength > 0) {
       account.username = account.username.substring(0, account.username.length() - 1);
+      account.usernameLength--;
     } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
       if (key != CODED) {
         account.username += key;
+        account.usernameLength++;
       }
     }
   }

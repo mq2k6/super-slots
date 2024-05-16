@@ -1,6 +1,6 @@
 class User {
 
-  String username = "";
+  String username;
   float cash;
   int usernameLength;
 

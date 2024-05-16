@@ -34,7 +34,6 @@ float[] columnSpeeds = new float[numImages];
 
 
 void setup() {
-
   account = new User("", 1000);
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
@@ -76,10 +75,12 @@ void setup() {
   if (progress.length > 0) {
     account.username = progress[0];
     account.cash = float(progress[1]);
-    displayBank = displayBank.substring(0, displayBank.length() - 1);
+    displayBank = displayBank.substring(0, displayBank.length() - 7);
     displayBank += nf(float(progress[1]), 0, 2);
     showClearProgress = true;
+    println("hi");
   }
+
 
   if (homeScreen == true) {
     createGUI();
@@ -137,6 +138,7 @@ void set_slots() {
 
 void draw() {
   background(0);
+  //println(account.username, account.cash, account.usernameLength);
   fill(0);
   if (!logoComplete) {
     introScreen();
@@ -223,7 +225,6 @@ void leverImage() {
   if (spinning) {
     image(leverDown, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(false);
-    //change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
@@ -231,7 +232,6 @@ void leverImage() {
   } else {
     image(leverUp, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(true);
-    //change_bet.setVisible(true);
     Change_BetLabel.setVisible(true);
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
@@ -301,7 +301,7 @@ void FAQ() {
   Change_BetLabel.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
-  image(faqBackButton, 25, 15);
+  image(faqBackButton, 25, 640);
   image(FAQbanner, width / 2 - 200, 50);
   textFont(calistoga);
   textAlign(CENTER);
@@ -309,7 +309,7 @@ void FAQ() {
   image(FAQtextField, width / 2 - 344, 250);
   textFont(abeezee);
   //text("", ) FAQ Text
-  if (mousePressed && mouseX > 25 && mouseX < 25 + 90 && mouseY > 15 && mouseY < 15 + 45) {
+  if (mousePressed && mouseX >= 25 && mouseX <= 115 && mouseY >= 640 && mouseY <= 685) {
     showFAQ = false;
   }
 }
