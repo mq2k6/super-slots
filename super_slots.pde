@@ -43,7 +43,7 @@ void setup() {
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
-  FAQbackground = loadImage("FAQbackground.png");
+  homeScreenBackground = loadImage("homeScreenBackground.png");
   engineLogo = loadImage("engineLogo.png");
   startButton = loadImage("startButton.png");
   introBackground = loadImage("introBackground.jpg");
@@ -52,11 +52,12 @@ void setup() {
   loginButton = loadImage("loginButton.png");
   FAQbanner = loadImage("FAQbanner.png");
   FAQtextField = loadImage("FAQtextField.png");
+  FAQbutton = loadImage("faqButton.png");
   clearProgressButton = loadImage("clearProgressButton.png");
   confirmCancelButton = loadImage("confirmCancelButton.png");
   progress = loadStrings("progress.txt");
 
-
+  FAQbutton.resize(411 / 3, 456 / 3);
   gameLogo.resize(350, 280);
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
   introBackground.resize(int(2490 / 2), int(1960 / 2));
@@ -83,6 +84,7 @@ void setup() {
     col_slider.setVisible(false);
     change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
+    image(FAQbutton, 50, 50);
     ALL_SYMBOLS = new ArrayList<symbol>();
     ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
@@ -134,7 +136,6 @@ void set_slots() {
 void draw() {
   background(0);
   fill(0);
-  //circle(850, 500, 50);
   if (!logoComplete) {
     introScreen();
   }
@@ -149,7 +150,7 @@ void draw() {
     col_slider.isVisible();
     change_bet.isVisible();
     Change_BetLabel.isVisible();
-    image(FAQbackground, 0, 0);
+    image(homeScreenBackground, 0, 0);
     play_spin_animation();
     
     if (spinning == false) {
@@ -263,7 +264,7 @@ void draw_bet_info() {
 
 void drawFaqScreen() {
   fill(0);
-  image(FAQbackground, 0, 0);
+  image(homeScreenBackground, 0, 0);
   image(FAQbanner, width / 2 - 200, 50);
   textFont(calistoga);
   textAlign(CENTER);

@@ -1,4 +1,4 @@
-PImage esrbRating, gameLogo, publisherLogo, engineLogo, introBackground, startButton, loginBackground, usernameTextField, loginButton, clearProgressButton, confirmCancelButton, FAQbackground, FAQbanner, FAQtextField;
+PImage esrbRating, gameLogo, publisherLogo, engineLogo, introBackground, startButton, loginBackground, usernameTextField, loginButton, clearProgressButton, confirmCancelButton, homeScreenBackground, FAQbanner, FAQtextField, FAQbutton;
 boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress, FAQcomplete;
 int exposure = 50;
 String[] progress;
