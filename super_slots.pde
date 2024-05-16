@@ -101,7 +101,7 @@ void setup() {
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
         symbols[i][j] = loadImage(i+".png"); //load symbols (in reels) images (named 0 to 8) in 2d array
-        symbols[i][j].resize(150, 150);
+        symbols[i][j].resize(125, 125);
       }
     }
 
@@ -118,10 +118,9 @@ void setup() {
     s = new slots(colNum);
 
     leverUp = loadImage("leverUp.png");
-    leverUp.resize(200, 0);
+    leverUp.resize(168, 0);
     leverDown = loadImage("leverDown.png");
-    leverDown.resize(200, 0);
-    
+    leverDown.resize(168, 0);
   }
 }
 
@@ -131,7 +130,7 @@ void set_slots() {
   for (int i = 0; i < new_sym.length; ++i) {
     for (int j = 0; j < new_sym[i].length; ++j) {
       symbols[i][j] = new_sym[i][j];
-      symbols[i][j].resize(150, 150);
+      symbols[i][j].resize(125, 125);
     }
   }
 }
@@ -150,20 +149,44 @@ void draw() {
     login();
   }
 
+<<<<<<< Updated upstream
   if (loginComplete && !showFAQ) {   //start slots once login button is preesed
+=======
+  if (loginComplete && !faqScreen) {   //start slots once login button is preesed
+
+>>>>>>> Stashed changes
     col_slider.isVisible();
     Change_BetLabel.isVisible();
     increaseBet.isVisible();
     decreaseBet.isVisible();
     image(homeScreenBackground, 0, 0);
+
+    strokeWeight(2.5);
+    stroke(0);
+    fill(125);
+    for (int i = 0; i < 9; i ++) {
+
+      circle((width/colNum)-75, 485-(50*i), 35);
+      if (i == 3 | i == 4 | i == 5) {
+        continue;
+      } else {
+        circle(2*(width/colNum), 485-(50*i), 35);
+      }
+    }
+
+
     play_spin_animation();
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
 
     if (spinning == false) {
       draw_bet_info();
       account.saveProgress();
     }
   }
+<<<<<<< Updated upstream
   
   if(showFAQ) {
     FAQ();
@@ -182,6 +205,18 @@ void draw() {
   
   if(!spinning) {
     s.draw_lines();  
+=======
+
+  if (faqScreen) {
+    drawFaqScreen();
+  }
+
+  if (out_of_money)
+    outOfMoney();
+
+  if (!spinning) {
+    s.draw_lines();
+>>>>>>> Stashed changes
   }
 }
 
@@ -191,6 +226,7 @@ void mouseClicked() {   //when lever clicked, spin reels
   if (mouseX < ((width/colNum) + 150*colNum +180) && mouseX > (width/colNum) + 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
     if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
+<<<<<<< Updated upstream
         if (account.cash > 0) {
           out_of_money = false;
           if (account.bet > 0) {
@@ -212,6 +248,13 @@ void mouseClicked() {   //when lever clicked, spin reels
           println("need more cash");
             spinning = false;
             out_of_money = true;
+=======
+        account.spin_slots();
+        spin_timer = millis();
+        for (int i = 0; i < numImages; i++) {
+          changeCol[i] = 0;
+          columnSpeeds[i] = random(2, 10);
+>>>>>>> Stashed changes
         }
       }
     }
@@ -223,24 +266,30 @@ void mouseClicked() {   //when lever clicked, spin reels
 
 void leverImage() {
   if (spinning) {
-    image(leverDown, (width/colNum) + 150*colNum - 8, 100);
+    image(leverDown, (width/colNum) + 125*colNum - 8, 225);
     col_slider.setVisible(false);
     Change_BetLabel.setVisible(false);
+<<<<<<< Updated upstream
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
 
+=======
+>>>>>>> Stashed changes
   } else {
-    image(leverUp, (width/colNum) + 150*colNum - 8, 100);
+    image(leverUp, (width/colNum) + 125*colNum - 8, 225);
     col_slider.setVisible(true);
     Change_BetLabel.setVisible(true);
+<<<<<<< Updated upstream
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
 
+=======
+>>>>>>> Stashed changes
   }
  
   noStroke();
   fill(0, 100);
-  rect((width/colNum) - 50, 0, 150*colNum+50, 475, 0, 0, 25, 25);
+  rect((width/colNum) - 50, (height/2) - (2*125) - 25, 125*colNum+50, 425, 25, 25, 25, 25);
 }
 
 
@@ -251,8 +300,12 @@ void play_spin_animation() {
   }
   frameRate(30);
   float x = (width/colNum)-25;
+<<<<<<< Updated upstream
   float y = 0;    
   
+=======
+  float y = (height/2)-(2*125);
+>>>>>>> Stashed changes
   leverImage(); //lever animation
 
   // Update column offsets and speeds
@@ -272,7 +325,7 @@ void play_spin_animation() {
   }
 
   // Draw the images
-  int delayMS = 5;
+  int delayMS = 3;
   for (int i=0; i <3; i++) {
     for (int j=0; j<colNum; j++) {
       if (spinning) {
@@ -281,10 +334,10 @@ void play_spin_animation() {
       } else {
         image(symbols[i][j], x, y);
       }
-      x += 150;
+      x += 125;
     }
     x = (width/colNum)-25;    //standard 2d array nested forloop
-    y += 150;
+    y += 125;
   }
 }
 
