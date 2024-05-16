@@ -4,7 +4,7 @@ import g4p_controls.*;
 boolean homeScreen = true;
 boolean out_of_money = false;
 boolean bet_more = false;
-boolean showFAQbutton, showFAQbackButton, showFAQ;
+boolean showFAQ;
 
 PFont calistoga, abeezee;
 
@@ -21,7 +21,7 @@ int colNum = 3;
 //float betSlide = 10;  //for bet slider
 
 PImage[][] symbols = new PImage[numImages][numImages];
-PImage leverUp, leverDown, faqButton;
+PImage leverUp, leverDown, faqButton, faqBackButton;
 
 boolean spinning = false;
 
@@ -56,6 +56,7 @@ void setup() {
   clearProgressButton = loadImage("clearProgressButton.png");
   faqButton = loadImage("faqButton.png");
   confirmCancelButton = loadImage("confirmCancelButton.png");
+  faqBackButton = loadImage("FAQbackButton.png");
   progress = loadStrings("progress.txt");
 
   FAQbutton.resize(411 / 4, 456 / 4);
@@ -63,7 +64,6 @@ void setup() {
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
   introBackground.resize(int(2490 / 2), int(1960 / 2));
   esrbRating.resize(225 / 2, 300 / 2);
-  faqButton.resize(411 / 4, 456 / 4);
   publisherLogo.resize(800 / 3, 265 / 3);
   engineLogo.resize(650 / 3, 218 / 3);
   loginBackground.resize(1600, 1200);
@@ -71,7 +71,7 @@ void setup() {
   loginButton.resize(int(308 / 2), int(114 / 2));
   clearProgressButton.resize(int(472 / 2), int(282 / 2));
   confirmCancelButton.resize(int(458 / 3), int(208 / 3));
-  FAQtextField.resize(int(689 / 1.2), int(400 / 1.2));
+  FAQtextField.resize(689, 400);
 
   if (progress.length > 0) {
     account.username = progress[0];
@@ -150,9 +150,7 @@ void draw() {
   }
 
   if (loginComplete && !showFAQ) {   //start slots once login button is preesed
-    showFAQbutton = true;
     col_slider.isVisible();
-    //change_bet.isVisible();
     Change_BetLabel.isVisible();
     Change_Col.isVisible();
     increaseBet.isVisible();
@@ -169,8 +167,6 @@ void draw() {
   }
   
   if(showFAQ) {
-    showFAQbutton = false;
-    showFAQbackButton = true;
     FAQ();
   }
   
@@ -254,11 +250,9 @@ void leverImage() {
 
 
 void play_spin_animation() {
-  if(showFAQbutton) {
-    image(faqButton, 25, 15);
-    //if(mousePressed) {
-    //  showFAQ = true;
-    //}
+  image(faqButton, 25, 15);
+  if(mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
+    showFAQ = true;
   }
   frameRate(30);
   float x = (width/colNum)-25;
@@ -307,16 +301,21 @@ void draw_bet_info() {
 
 void FAQ() {
   col_slider.setVisible(false);
-  change_bet.setVisible(false);
+  increaseBet.setVisible(false);
+  decreaseBet.setVisible(false);
   Change_BetLabel.setVisible(false);
   Change_Col.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
+  image(faqBackButton, 25, 15);
   image(FAQbanner, width / 2 - 200, 50);
   textFont(calistoga);
   textAlign(CENTER);
   text("FAQ", width / 2, 150);
-  image(FAQtextField, width / 2 - 287, 250);
+  image(FAQtextField, width / 2 - 344, 250);
   textFont(abeezee);
   //text("", ) FAQ Text
+  if (mousePressed && mouseX > 25 && mouseX < 25 + 90 && mouseY > 15 && mouseY < 15 + 45) {
+    showFAQ = false;
+  }
 }
