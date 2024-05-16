@@ -3,11 +3,8 @@ import g4p_controls.*;
 
 boolean homeScreen = true;
 boolean out_of_money = false;
-<<<<<<< HEAD
 boolean bet_more = false;
-=======
 boolean showFAQbutton, showFAQbackButton, showFAQ;
->>>>>>> 9de5d7fcb7ba82a426e32751801fb23fd5042aab
 
 PFont calistoga, abeezee;
 
@@ -231,12 +228,9 @@ void leverImage() {
     col_slider.setVisible(false);
     //change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
-<<<<<<< HEAD
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
 
-=======
->>>>>>> 9de5d7fcb7ba82a426e32751801fb23fd5042aab
   } else {
     image(leverUp, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(true);
@@ -246,10 +240,7 @@ void leverImage() {
     decreaseBet.setVisible(true);
 
   }
-  //strokeWeight(10);
-  //line((width/colNum) + 150*colNum, 0, (width/colNum) + 150*colNum, 475);
-  //line((width/colNum) - 50, 0, (width/colNum) - 50, 475);
-  //line((width/colNum) - 50, 475, (width/colNum) + 150*colNum, 475);
+ 
   noStroke();
   fill(0, 100);
   rect((width/colNum) - 50, 0, 150*colNum+50, 475, 0, 0, 25, 25);
