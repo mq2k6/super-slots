@@ -29,14 +29,11 @@ class User {
 
   void spin_slots() {
     //this.bet = 10 * col_slider.getValueI();
-    println("cash is", this.cash);
-    println("betting", bet);
     if (this.cash >= bet) {
       this.cash += s.spin(bet);
       spinning = true;
       this.cash -= bet;
       bet_info += "balance: " + str(round(this.cash)) + "\n";
-      println("balance:", this.cash);
     }
     else 
       out_of_money = true;

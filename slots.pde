@@ -27,7 +27,6 @@ class slots {
     strokeWeight(7);
     stroke(255);
     for(int i = 0; i < winning_lines.size(); ++i) {
-      //println("drew winning line");
       PVector p1 = winning_lines.get(i).point_1;
       PVector p2 = winning_lines.get(i).point_2;
       line(p1.y * 150 + x + 50,p1.x * 150 + y,p2.y * 150 + x + 50,p2.x * 150 + y);
@@ -57,7 +56,6 @@ class slots {
   float spin(float bet) {
     bet_info = "";
     bet_info += "bet: " + str(bet) + "\n";
-    //println("bet:", bet);
     fill_machine();
     //reset ArrayList
     winning_lines = new ArrayList<line>();
@@ -70,11 +68,8 @@ class slots {
       for(int j = 0; j < columns; ++j) {
         symbol rand_sym = ALL_SYMBOLS.get(int(random(ALL_SYMBOLS.size())));
         machine.get(i).set(j, rand_sym);
-        print(rand_sym.id + " ");
       }
-      println();
     }
-    println();
   }
   
   //check each cell
@@ -99,15 +94,11 @@ class slots {
       }
     }
     for(int i = 0; i < winning_lines.size(); ++i) {
-      println(winning_lines.get(i).point_1,winning_lines.get(i).point_2);
     }
     bet_info += "wins: " + str(wins) + "\n";
-    //println("wins:", wins);
     float payout = calc_payout(wins, bet, winners);
     
     bet_info += "payout: " + str(payout) + "\n";
-    //println("payout", payout);
-    //println();
     return payout;
 
   }  

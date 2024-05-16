@@ -173,7 +173,6 @@ void mouseClicked() {   //when lever clicked, spin reels
     if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
       if (!spinning) {
         account.spin_slots();
-        println("lever clicked");
         spin_timer = millis();
         for (int i = 0; i < numImages; i++) {
           changeCol[i] = 0;

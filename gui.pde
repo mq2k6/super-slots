@@ -22,7 +22,6 @@ public void custom_slider1_change1(GCustomSlider source, GEvent event) { //_CODE
 public void bet_slider(GCustomSlider source, GEvent event) { //_CODE_:change_bet:596327:
   betSlide = change_bet.getValueF();
   account.set_bet(betSlide);
-  println("change_bet - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:change_bet:596327:
 
 // Create all the GUI controls. 
