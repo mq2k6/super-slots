@@ -36,14 +36,13 @@ void setup() {
 
   account = new User("", 1000);
 
-
   calistoga = createFont("Calistoga-Regular.ttf", 50);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
   size(1200, 700);
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
-  homeScreenBackground = loadImage("homeScreenBackground.png");
+  homeScreenBackground = loadImage("FAQbackground.png");
   engineLogo = loadImage("engineLogo.png");
   startButton = loadImage("startButton.png");
   introBackground = loadImage("introBackground.jpg");
@@ -57,7 +56,7 @@ void setup() {
   confirmCancelButton = loadImage("confirmCancelButton.png");
   progress = loadStrings("progress.txt");
 
-  FAQbutton.resize(411 / 3, 456 / 3);
+  FAQbutton.resize(411 / 4, 456 / 4);
   gameLogo.resize(350, 280);
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
   introBackground.resize(int(2490 / 2), int(1960 / 2));
@@ -84,7 +83,6 @@ void setup() {
     col_slider.setVisible(false);
     change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
-    image(FAQbutton, 50, 50);
     ALL_SYMBOLS = new ArrayList<symbol>();
     ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
@@ -117,8 +115,7 @@ void setup() {
     leverUp.resize(200, 0);
     leverDown = loadImage("leverDown.png");
     leverDown.resize(200, 0);
-  } else if (faqScreen == true) {
-    drawFaqScreen();
+    
   }
 }
 
@@ -146,7 +143,8 @@ void draw() {
     login();
   }
 
-  if (loginComplete) {   //start slots once login button is preesed
+  if (loginComplete && !faqScreen) {   //start slots once login button is preesed
+    
     col_slider.isVisible();
     change_bet.isVisible();
     Change_BetLabel.isVisible();
@@ -157,6 +155,10 @@ void draw() {
       draw_bet_info();
       account.saveProgress();
     }
+  }
+  
+  if(faqScreen) {
+    drawFaqScreen();
   }
   
   if (out_of_money)
@@ -218,6 +220,7 @@ void leverImage() {
 
 
 void play_spin_animation() {
+  image(FAQbutton, 25, 15);
   frameRate(30);
   float x = (width/colNum)-25;
   float y = 0;

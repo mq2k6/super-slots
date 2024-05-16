@@ -1,5 +1,5 @@
 PImage esrbRating, gameLogo, publisherLogo, engineLogo, introBackground, startButton, loginBackground, usernameTextField, loginButton, clearProgressButton, confirmCancelButton, homeScreenBackground, FAQbanner, FAQtextField, FAQbutton;
-boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress, FAQcomplete;
+boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress;
 int exposure = 50;
 String[] progress;
 String displayBank = "Cash: $0";
