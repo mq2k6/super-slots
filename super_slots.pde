@@ -42,7 +42,7 @@ void setup() {
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
-  homeScreenBackground = loadImage("FAQbackground.png");
+  homeScreenBackground = loadImage("homeScreenBackground.png");
   engineLogo = loadImage("engineLogo.png");
   startButton = loadImage("startButton.png");
   introBackground = loadImage("introBackground.jpg");
@@ -143,7 +143,7 @@ void draw() {
     login();
   }
 
-  if (loginComplete && !faqScreen) {   //start slots once login button is preesed
+  if (loginComplete) {   //start slots once login button is preesed
     
     col_slider.isVisible();
     change_bet.isVisible();
@@ -157,9 +157,6 @@ void draw() {
     }
   }
   
-  if(faqScreen) {
-    drawFaqScreen();
-  }
   
   if (out_of_money)
     outOfMoney();
@@ -187,13 +184,6 @@ void mouseClicked() {   //when lever clicked, spin reels
   }
 
 
-  if (mousePressed && mouseX < 800 && mouseX > 700) {
-    if (mousePressed && mouseY < 100 && mouseY > 0) {
-      homeScreen = false;
-      faqScreen = true;
-      drawFaqScreen();
-    }
-  }
 }
 
 
@@ -203,7 +193,6 @@ void leverImage() {
     col_slider.setVisible(false);
     change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
-
   } else {
     image(leverUp, (width/colNum) + 150*colNum - 8, 100);
     col_slider.setVisible(true);
@@ -222,7 +211,6 @@ void leverImage() {
 
 
 void play_spin_animation() {
-  image(FAQbutton, 25, 15);
   frameRate(30);
   float x = (width/colNum)-25;
   float y = 0;
@@ -267,7 +255,7 @@ void draw_bet_info() {
   text(bet_info, 500, 500);
 }
 
-void drawFaqScreen() {
+void FAQ() {
   fill(0);
   image(homeScreenBackground, 0, 0);
   image(FAQbanner, width / 2 - 200, 50);
