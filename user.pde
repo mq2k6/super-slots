@@ -46,7 +46,5 @@ class User {
     }
   }
 
-  void set_bet(float b) {
-      this.bet = b;
-  }
+  
 }

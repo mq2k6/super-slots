@@ -158,6 +158,7 @@ void draw() {
     image(homeScreenBackground, 0, 0);
     play_spin_animation();
     
+
     if (spinning == false) {
       draw_bet_info();
       account.saveProgress();
@@ -177,7 +178,7 @@ void draw() {
     out_of_money = false;
     
   if (bet_more)
-    text("bet more", width/2 +150, 600);
+    text("bet more", width/2, 600);
   else
     bet_more = false;
   

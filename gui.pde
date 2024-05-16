@@ -28,12 +28,10 @@ public void custom_slider1_change1(GCustomSlider source, GEvent event) { //_CODE
 
 public void increaseButton(GButton source, GEvent event) { //_CODE_:increaseBet:729238:
   account.bet += 10;
-  account.set_bet(account.bet);
 } //_CODE_:increaseBet:729238:
 
 public void decreaseButton(GButton source, GEvent event) { //_CODE_:decreaseBet:480544:
   account.bet -= 10;
-  account.set_bet(account.bet);
 } //_CODE_:decreaseBet:480544:
 
 
