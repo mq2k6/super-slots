@@ -166,6 +166,10 @@ void draw() {
       draw_bet_info();
       fill(255);
       text(round(account.bet), 1150, 275);
+      textSize(14);
+      fill(255,255,0);
+      text("Balance", 1130, 410);  //keep at this height for need more money & bet more text 
+      text(nf(account.cash,0,2), 1130, 430);      
       account.saveProgress();
     }
   }
@@ -176,14 +180,16 @@ void draw() {
   
   // special cases for betting & cash
   if (out_of_money) {
-    textSize(15);
+    fill(255);
+    textSize(14);
     text("need more money", 1060, 392);
   }
   else
     out_of_money = false;
     
   if (bet_more) {
-    textSize(15);
+    fill(255);
+    textSize(14);
     text("bet more", 1120, 392);
   }
   else
