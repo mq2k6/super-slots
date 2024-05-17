@@ -95,6 +95,10 @@ void setup() {
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
     ALL_SYMBOLS.add(new symbol("2.png", "c", 1.35));
     ALL_SYMBOLS.add(new symbol("3.png", "d", 1.25));
+    ALL_SYMBOLS.add(new symbol("4.png", "e", 1.25));
+    ALL_SYMBOLS.add(new symbol("5.png", "f", 1.25));
+
+    
     
     numImages = ALL_SYMBOLS.size();
 

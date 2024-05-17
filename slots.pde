@@ -29,6 +29,7 @@ class slots {
     for(int i = 0; i < winning_lines.size(); ++i) {
       PVector p1 = winning_lines.get(i).point_1;
       PVector p2 = winning_lines.get(i).point_2;
+      //mustafa fix this
       line(p1.y,p1.x,p2.y ,p2.x);
     }
   }
