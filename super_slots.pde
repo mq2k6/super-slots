@@ -102,7 +102,7 @@ void setup() {
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
         symbols[i][j] = loadImage(i+".png"); //load symbols (in reels) images (named 0 to 8) in 2d array
-        symbols[i][j].resize(150, 150);
+        symbols[i][j].resize(125, 125);
       }
     }
 
@@ -119,9 +119,9 @@ void setup() {
     s = new slots(colNum);
 
     leverUp = loadImage("leverUp.png");
-    leverUp.resize(200, 0);
+    leverUp.resize(175, 0);
     leverDown = loadImage("leverDown.png");
-    leverDown.resize(200, 0);
+    leverDown.resize(175, 0);
     
   }
 }
@@ -132,7 +132,7 @@ void set_slots() {
   for (int i = 0; i < new_sym.length; ++i) {
     for (int j = 0; j < new_sym[i].length; ++j) {
       symbols[i][j] = new_sym[i][j];
-      symbols[i][j].resize(150, 150);
+      symbols[i][j].resize(125, 125);
     }
   }
 }
@@ -203,8 +203,8 @@ void draw() {
 
 
 void mouseClicked() {   //when lever clicked, spin reels
-  if (mouseX < ((width/colNum) + 150*colNum +180) && mouseX > (width/colNum) + 150*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
-    if (mouseY > 100 && mouseY < 240) {    // 140 height (click range)
+  if (mouseX < ((width/colNum) + 125*colNum +180) && mouseX > (width/colNum) + 125*colNum) {   //  image width 150 x number of cols (from slider)   +   180 width (click range)   [symbol] [symbol] [symbol] [lever click range]
+    if (mouseY > 250 && mouseY < 375) {    // 140 height (click range)
       if (!spinning) {
         if (account.cash > 0) {
           out_of_money = false;
@@ -238,7 +238,7 @@ void mouseClicked() {   //when lever clicked, spin reels
 
 void leverImage() {
   if (spinning) {
-    image(leverDown, (width/colNum) + 150*colNum - 8, 100);
+    image(leverDown, (width/colNum) + 125*colNum - 8, (height/3)-115+150);
     col_slider.setVisible(false);
     Change_BetLabel.setVisible(false);
     Change_Col.setVisible(false);
@@ -246,7 +246,7 @@ void leverImage() {
     decreaseBet.setVisible(false);
 
   } else {
-    image(leverUp, (width/colNum) + 150*colNum - 8, 100);
+    image(leverUp, (width/colNum) + 125*colNum - 8, (height/3)-115+150);
     col_slider.setVisible(true);
     Change_BetLabel.setVisible(true);
     Change_Col.setVisible(true);
@@ -257,7 +257,7 @@ void leverImage() {
  
   noStroke();
   fill(0, 100);
-  rect((width/colNum) - 50, 0, 150*colNum+50, 475, 0, 0, 25, 25);
+  rect((width/colNum) - 50, (height/3)-115, 125*colNum+50, 425, 25, 25, 25, 25);
 }
 
 
@@ -268,7 +268,7 @@ void play_spin_animation() {
   }
   frameRate(30);
   float x = (width/colNum)-25;
-  float y = 0;    
+  float y = (height/3) - 90;    
   
   leverImage(); //lever animation
 
@@ -298,10 +298,10 @@ void play_spin_animation() {
       } else {
         image(symbols[i][j], x, y);
       }
-      x += 150;
+      x += 125;
     }
     x = (width/colNum)-25;    //standard 2d array nested forloop
-    y += 150;
+    y += 125;
   }
 }
 
