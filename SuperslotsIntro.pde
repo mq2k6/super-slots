@@ -69,7 +69,7 @@ void login() {
 
   if (mousePressed && mouseX > width / 2 - 76 && mouseX < width / 2 - 10 && mouseY > height / 2 + 225 && mouseY < height / 2 + 225 + confirmCancelButton.height && mouseX < width / 2 - 20 + confirmCancelButton.width / 2 && showConfirmCancel) {
     account.clearProgress();
-    displayBank = "Cash: $0";
+    displayBank = "Cash: $1000.00";
     showConfirmCancel = false;
     showClearProgress = false;
   }
