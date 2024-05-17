@@ -159,10 +159,13 @@ void draw() {
     decreaseBet.isVisible();
     image(homeScreenBackground, 0, 0);
     play_spin_animation();
+     
     
 
     if (spinning == false) {
       draw_bet_info();
+      fill(255);
+      text(round(account.bet), 1150, 275);
       account.saveProgress();
     }
   }
@@ -174,7 +177,7 @@ void draw() {
   // special cases for betting & cash
   if (out_of_money) {
     textSize(15);
-    text("need more money", 1020, 392);
+    text("need more money", 1060, 392);
   }
   else
     out_of_money = false;
