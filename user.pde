@@ -22,7 +22,7 @@ class User {
 
   void clearProgress() {
     this.username = "";
-    String[] stats = {};
+    String[] stats = {"/n", "1000.00"};
     saveStrings("progress.txt", stats);
     progress = loadStrings("progress.txt");
   }
