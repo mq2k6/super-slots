@@ -293,10 +293,10 @@ void play_spin_animation() {
   for (int i=0; i <3; i++) {
     for (int j=0; j<colNum; j++) {
       if (spinning) {
-        image(symbols[i][(int(j + changeCol[j])) % numImages], x, y);
+        image(symbols[i][(int(j + changeCol[j%5])) % numImages], x, y);
         delay(delayMS);
       } else {
-        image(symbols[i][j], x, y);
+        image(symbols[i][j%5], x, y);
       }
       x += 125;
     }
