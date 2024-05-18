@@ -48,7 +48,7 @@ public void createGUI(){
   G4P.messagesEnabled(false);
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
-  surface.setTitle("Sketch Window");
+  surface.setTitle("super_slots");
   col_slider = new GCustomSlider(this, 1056, 20, 144, 48, "grey_blue");
   col_slider.setShowValue(true);
   col_slider.setLimits(3.0, 3.0, 5.0);

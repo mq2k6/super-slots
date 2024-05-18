@@ -22,14 +22,15 @@ class slots {
   void draw_lines() {
     
     float x = (width/colNum);
-    float y = 75;
+    float y = 175;
     
     strokeWeight(7);
     stroke(255);
     for(int i = 0; i < winning_lines.size(); ++i) {
       PVector p1 = winning_lines.get(i).point_1;
       PVector p2 = winning_lines.get(i).point_2;
-      line(p1.y * 150 + x + 50,p1.x * 150 + y,p2.y * 150 + x + 50,p2.x * 150 + y);
+      //mustafa fix this
+      line(p1.y,p1.x,p2.y ,p2.x);
     }
   }
   
@@ -88,7 +89,8 @@ class slots {
           
           //increase rewards if get more than three in a row
           if(common_symbols > 3) {
-            wins += (common_symbols - 3) * 3;
+            wins = common_symbols / 3;
+            wins += wins * 3;
           }
         }
       }
@@ -105,25 +107,31 @@ class slots {
   
   //uses recursion to check surrounding cells for the same symbol, and detect three in a row or more
   int check_surround(int i, int j, String direction, int found, line win_line) {
-    
     //try all "forward" directions, to prevent from counting twice
     if(direction == NONE) {
       
       //try catch for out of bounds error
       try {
+        //check if east is the same
         if(machine.get(i).get(j).id == machine.get(i).get(j + 1).id) {
           win_line.set_second_point(new PVector(i, j + 1));
-          return check_surround(i, j + 1, EAST, found + 1, win_line);
+          //if true pass the symbols coodinates, and east as the direction
+          int new_found = check_surround(i, j + 1, EAST, found + 1, win_line);
+          if(new_found >= 3) {
+            found += new_found;
+          }
         }  
       } catch (Exception e) {
       
       }
-
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j + 1).id) {
           win_line.set_second_point(new PVector(i + 1, j + 1));
-          return check_surround(i + 1, j + 1, SOUTH_EAST, found + 1, win_line);
-        }  
+          int new_found = check_surround(i + 1, j + 1, SOUTH_EAST, found + 1, win_line);
+          if(new_found >= 3) {
+            found += new_found;
+          }
+        } 
       } catch (Exception e) {
       
       }
@@ -131,7 +139,11 @@ class slots {
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j).id) {
           win_line.set_second_point(new PVector(i + 1, j));
-          return check_surround(i + 1, j, SOUTH, found + 1, win_line);
+          int new_found = check_surround(i + 1, j, SOUTH, found + 1, win_line);
+          
+          if(new_found >= 3) {
+            found += new_found;
+          }
         }  
       } catch (Exception e) {
       
@@ -140,17 +152,23 @@ class slots {
       try {
         if(machine.get(i).get(j).id == machine.get(i + 1).get(j - 1).id) {
           win_line.set_second_point(new PVector(i + 1, j - 1));
-          return check_surround(i + 1, j - 1, SOUTH_WEST, found + 1, win_line);
+          int new_found = check_surround(i + 1, j - 1, SOUTH_WEST, found + 1, win_line);
+          if(new_found >= 3) {
+            found += new_found;
+          }
         }  
       } catch (Exception e) {
       
       }
     }
     
-    if(direction == EAST) {
+    //if passed a direction of east
+    if (direction == EAST) {
       try {
+        //check if east if the same
         if(machine.get(i).get(j).id == machine.get(i).get(j + 1).id) {
           win_line.set_second_point(new PVector(i, j + 1));
+          //if true pass the symbols coodinates, and east as the direction
           return check_surround(i, j + 1, EAST, found + 1, win_line);
         }  
       } catch (Exception e) {
