@@ -18,7 +18,7 @@ String bet_info = "";
 int numImages = 9;
 
 int colNum = 3;
-//float betSlide = 10;  //for bet slider
+//int betSlide = 10;  //for bet slider
 
 PImage[][] symbols = new PImage[numImages][numImages];
 PImage leverUp, leverDown, faqButton, faqBackButton;
@@ -74,11 +74,10 @@ void setup() {
 
   if (progress.length > 0) {
     account.username = progress[0];
-    account.cash = float(progress[1]);
+    account.cash = int(progress[1]);
     displayBank = displayBank.substring(0, displayBank.length() - 7);
     displayBank += nf(float(progress[1]), 0, 2);
     showClearProgress = true;
-    println("hi");
   }
 
 
@@ -143,7 +142,6 @@ void set_slots() {
 
 void draw() {
   background(0);
-  //println(account.username, account.cash, account.usernameLength);
   fill(0);
   if (!logoComplete) {
     introScreen();
@@ -222,13 +220,11 @@ void mouseClicked() {   //when lever clicked, spin reels
             }
           }
           else {
-            println("bet more");
             spinning = false;
             bet_more = true;
           }
         }
         else {
-          println("need more cash");
             spinning = false;
             out_of_money = true;
         }
