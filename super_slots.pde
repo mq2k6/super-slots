@@ -266,9 +266,11 @@ void leverImage() {
 
 
 void play_spin_animation() {
+  if(!spinning) {
   image(faqButton, 25, 15);
-  if(mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
-    showFAQ = true;
+    if(mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
+      showFAQ = true;
+    }
   }
   frameRate(30);
   float x = (width/colNum)-25;
