@@ -70,7 +70,7 @@ void setup() {
   loginButton.resize(int(308 / 2), int(114 / 2));
   clearProgressButton.resize(int(472 / 2), int(282 / 2));
   confirmCancelButton.resize(int(458 / 3), int(208 / 3));
-  FAQtextField.resize(689, 400);
+  FAQtextField.resize(800, 464);
 
   if (progress.length > 0) {
     account.username = progress[0];
@@ -319,15 +319,20 @@ void FAQ() {
   Change_BetLabel.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
-  image(faqBackButton, 25, 640);
+  image(faqBackButton, 20, 640);
   image(FAQbanner, width / 2 - 200, 50);
   textFont(calistoga);
   textAlign(CENTER);
   text("FAQ", width / 2, 150);
-  image(FAQtextField, width / 2 - 344, 250);
+  image(FAQtextField, width / 2 - 400, 225);
   textFont(abeezee);
-  //text("", ) FAQ Text
-  if (mousePressed && mouseX >= 25 && mouseX <= 115 && mouseY >= 640 && mouseY <= 685) {
+  //text("Q: How can I control the slot machine?", );
+  //text("A: Simply choose the size of your bet using the buttons on the right hand side, then click the lever to spin the reels! You may choose the difficult of the game using the columns slider in the top right hand corner.", );
+  //text("Q: Does this game save my progress?", ) Q3
+  //text("A: Absolutely. All users should be comfortable knowing thay their progress is continuously being saved into the game files.", );
+  //text("Q: How much is each slots symbol worth?", );
+  //text("A: Each symbol multiplies your bet by a certain factor ranging from 1.25x and up to 5x. Refer to the multiplier chart below.", );
+  if (mousePressed && mouseX >= 20 && mouseX <= 110 && mouseY >= 640 && mouseY <= 685) {
     showFAQ = false;
   }
 }
