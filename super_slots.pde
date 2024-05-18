@@ -328,14 +328,31 @@ void FAQ() {
   textFont(calistoga);
   textAlign(CENTER);
   text("FAQ", width / 2, 150);
+  textSize(24);
   image(FAQtextField, width / 2 - 400, 225);
+  textAlign(LEFT);
+  float startX = width / 2 - 360;
+  float startY = 285;
+  float secondQAStartY = startY + 170;
+  float thirdQAStartY = secondQAStartY + 115;
+
+  text("Q: How can I control the slot machine?", startX, startY);
+  text("Q: Does this game save my progress?", startX, secondQAStartY);
+  text("Q: How much is each slot symbol worth?", startX, thirdQAStartY);
+
   textFont(abeezee);
-  //text("Q: How can I control the slot machine?", );
-  //text("A: Simply choose the size of your bet using the buttons on the right hand side, then click the lever to spin the reels! You may choose the difficult of the game using the columns slider in the top right hand corner.", );
-  //text("Q: Does this game save my progress?", ) Q3
-  //text("A: Absolutely. All users should be comfortable knowing thay their progress is continuously being saved into the game files.", );
-  //text("Q: How much is each slots symbol worth?", );
-  //text("A: Each symbol multiplies your bet by a certain factor ranging from 1.25x and up to 5x. Refer to the multiplier chart below.", );
+
+  text("A: Simply choose the size of your bet using the buttons on the ", startX, startY + 30);
+  text("right hand side, then click the lever to spin the reels! You may", startX, startY + 60);
+  text("choose the difficulty of the game using the columns slider in", startX, startY + 90);
+  text("the top right hand corner.", startX, startY + 120);
+
+  text("A: Absolutely. All users should be comfortable knowing that ", startX, secondQAStartY + 30);
+  text("their progress is continuously being saved into the game files.", startX, secondQAStartY + 60);
+
+  text("A: Each symbol multiplies your bet by a certain factor ranging ", startX, thirdQAStartY + 30);
+  text("from 1.25x and up to 5x. Refer to the user manual for details.", startX, thirdQAStartY + 60);
+
   if (mousePressed && mouseX >= 20 && mouseX <= 110 && mouseY >= 640 && mouseY <= 685) {
     showFAQ = false;
   }
