@@ -97,8 +97,8 @@ void setup() {
     ALL_SYMBOLS.add(new symbol("4.png", "e", 1.25));
     ALL_SYMBOLS.add(new symbol("5.png", "f", 1.25));
 
-    
-    
+
+
     numImages = ALL_SYMBOLS.size();
 
 
@@ -125,7 +125,6 @@ void setup() {
     leverUp.resize(175, 0);
     leverDown = loadImage("leverDown.png");
     leverDown.resize(175, 0);
-    
   }
 }
 
@@ -161,44 +160,42 @@ void draw() {
     decreaseBet.isVisible();
     image(homeScreenBackground, 0, 0);
     play_spin_animation();
-     
-    
+
+
 
     if (spinning == false) {
       draw_bet_info();
       fill(255);
       text(round(account.bet), 1150, 275);
       textSize(14);
-      fill(255,255,0);
-      text("Balance", 1130, 410);  //keep at this height for need more money & bet more text 
-      text(nf(account.cash,0,2), 1130, 430);      
+      fill(255, 255, 0);
+      text("Balance ($)", 1118, 410);  //keep at this height for need more money & bet more text 
+      text(nf(account.cash, 0, 2), 1118, 430);      
       account.saveProgress();
     }
   }
-  
-  if(showFAQ) {
+
+  if (showFAQ) {
     FAQ();
   }
-  
+
   // special cases for betting & cash
   if (out_of_money) {
     fill(255);
     textSize(14);
     text("need more money", 1060, 392);
-  }
-  else
+  } else
     out_of_money = false;
-    
+
   if (bet_more) {
     fill(255);
     textSize(14);
     text("bet more", 1120, 392);
-  }
-  else
+  } else
     bet_more = false;
-  
-  if(!spinning) {
-    s.draw_lines();  
+
+  if (!spinning) {
+    s.draw_lines();
   }
 }
 
@@ -218,21 +215,17 @@ void mouseClicked() {   //when lever clicked, spin reels
               changeCol[i] = 0;
               columnSpeeds[i] = random(2, 10);
             }
-          }
-          else {
+          } else {
             spinning = false;
             bet_more = true;
           }
-        }
-        else {
-            spinning = false;
-            out_of_money = true;
+        } else {
+          spinning = false;
+          out_of_money = true;
         }
       }
     }
   }
-
-
 }
 
 
@@ -244,7 +237,6 @@ void leverImage() {
     Change_Col.setVisible(false);
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
-
   } else {
     image(leverUp, (width/colNum) + 125*colNum - 8, (height/3)-115+150);
     col_slider.setVisible(true);
@@ -252,9 +244,8 @@ void leverImage() {
     Change_Col.setVisible(true);
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
-
   }
- 
+
   noStroke();
   fill(0, 100);
   rect((width/colNum) - 50, (height/3)-115, 125*colNum+50, 425, 25, 25, 25, 25);
@@ -262,16 +253,16 @@ void leverImage() {
 
 
 void play_spin_animation() {
-  if(!spinning) {
-  image(faqButton, 25, 15);
-    if(mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
+  if (!spinning) {
+    image(faqButton, 25, 15);
+    if (mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
       showFAQ = true;
     }
   }
   frameRate(30);
   float x = (width/colNum)-25;
   float y = (height/3) - 90;    
-  
+
   leverImage(); //lever animation
 
   // Update column offsets and speeds
@@ -310,7 +301,7 @@ void play_spin_animation() {
 
 void draw_bet_info() {
   fill(255);
-  text(bet_info, 500, 500);
+  text(bet_info, 500, 570);
 }
 
 void FAQ() {
