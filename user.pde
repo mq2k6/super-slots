@@ -21,9 +21,12 @@ class User {
 
   void clearProgress() {
     this.username = "";
-    String[] stats = {"", "1000.00"};
+    String[] stats = {};
+    this.cash = 1000;
     saveStrings("progress.txt", stats);
     progress = loadStrings("progress.txt");
+    this.usernameLength = 0;
+    showWelcomeMessage = false;
   }
 
   void spin_slots() {
