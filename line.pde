@@ -1,4 +1,4 @@
-class line {
+class line {    //Shortcuts to quickly calculate win lines
   PVector point_1;
   PVector point_2;
   line(PVector p1) {

@@ -21,16 +21,25 @@ class slots {
   
   void draw_lines() {
     
-    float x = (width/colNum);
-    float y = 175;
+    float x = 125;
+    float y = 125;
+    
+    float x_offset = 850 - 125 * (colNum);
+    //hack fix
+    if(colNum >= 5) {
+      x_offset += 50;
+    } else if (colNum <= 3) {
+      x_offset -= 50;
+    }
+    
+    float y_offset = 200;
     
     strokeWeight(7);
     stroke(255);
     for(int i = 0; i < winning_lines.size(); ++i) {
       PVector p1 = winning_lines.get(i).point_1;
       PVector p2 = winning_lines.get(i).point_2;
-      //mustafa fix this
-      line(p1.y,p1.x,p2.y ,p2.x);
+      line(p1.y * x + x_offset,p1.x * y + y_offset,p2.y * x + x_offset,p2.x * y + y_offset);
     }
   }
   

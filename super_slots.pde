@@ -14,17 +14,14 @@ slots s;
 User account;
 
 String bet_info = "";
-//code
-int numImages = 9;
 
+int numImages = 9;
 int colNum = 3;
-//int betSlide = 10;  //for bet slider
 
 PImage[][] symbols = new PImage[numImages][numImages];
 PImage leverUp, leverDown, faqButton, faqBackButton;
 
 boolean spinning = false;
-
 
 float spin_timer = -1; //used to count to spin_time
 float spin_time = 3000; //milliseconds
@@ -34,11 +31,13 @@ float[] columnSpeeds = new float[numImages];
 
 
 void setup() {
+  size(1200, 700);
+
   account = new User("", 1000);
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
-  size(1200, 700);
+
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
@@ -58,6 +57,7 @@ void setup() {
   faqBackButton = loadImage("FAQbackButton.png");
   progress = loadStrings("progress.txt");
 
+  //setting image sizes to be more practical
   FAQbutton.resize(411 / 4, 456 / 4);
   gameLogo.resize(350, 280);
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
@@ -72,7 +72,7 @@ void setup() {
   confirmCancelButton.resize(int(458 / 3), int(208 / 3));
   FAQtextField.resize(800, 464);
 
-  if (progress.length > 0) {
+  if (progress.length > 0) {    //If the progress file is not empty, load last user
     account.username = progress[0];
     account.cash = int(progress[1]);
     displayBank = displayBank.substring(0, displayBank.length() - 7);
@@ -81,10 +81,9 @@ void setup() {
   }
 
 
-  if (homeScreen == true) {
+  if (homeScreen == true) {    //Homescreen = main slots screen
     createGUI();
     col_slider.setVisible(false);
-    //change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
     Change_Col.setVisible(false);
     increaseBet.setVisible(false);
@@ -98,10 +97,7 @@ void setup() {
     ALL_SYMBOLS.add(new symbol("5.png", "f", 1.65));
     ALL_SYMBOLS.add(new symbol("6.png", "g", 1.75));
 
-
-
     numImages = ALL_SYMBOLS.size();
-
 
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
@@ -143,6 +139,8 @@ void set_slots() {
 void draw() {
   background(0);
   fill(0);
+
+  //Intro screen draw handling
   if (!logoComplete) {
     introScreen();
   }
@@ -151,8 +149,9 @@ void draw() {
   }
   if (iconsComplete && !loginComplete) {
     login();
-  }
+  }    
 
+  //Draw the homescreen
   if (loginComplete && !showFAQ) {   //start slots once login button is preesed
     col_slider.isVisible();
     Change_BetLabel.isVisible();
@@ -162,8 +161,7 @@ void draw() {
     image(homeScreenBackground, 0, 0);
     play_spin_animation();
 
-
-
+    //While the spinner isn't spinning, show user their current information
     if (spinning == false) {
       draw_bet_info();
       fill(255);
@@ -175,6 +173,7 @@ void draw() {
       account.saveProgress();
     }
   }
+
 
   if (showFAQ) {
     FAQ();
@@ -188,14 +187,14 @@ void draw() {
   } else
     out_of_money = false;
 
-  if (bet_more) {
+  if (bet_more) {    //When the user is below the floor for their selected slot size
     fill(255);
     textSize(14);
     text("bet more", 1120, 392);
   } else
     bet_more = false;
 
-  if (!spinning) {
+  if (!spinning) {  //For showing if a user won
     s.draw_lines();
   }
 }
@@ -230,7 +229,7 @@ void mouseClicked() {   //when lever clicked, spin reels
 }
 
 
-void leverImage() {
+void leverImage() {    //Draw main slot machine
   if (spinning) {
     image(leverDown, (width/colNum) + 125*colNum - 8, (height/3)-115+150);
     col_slider.setVisible(false);
@@ -260,6 +259,7 @@ void play_spin_animation() {
       showFAQ = true;
     }
   }
+
   frameRate(30);
   float x = (width/colNum)-25;
   float y = (height/3) - 90;    
