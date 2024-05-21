@@ -51,7 +51,7 @@ void login() {
   image(usernameTextField, width / 2 - 115, height / 2 - 120);
   fill(255);
   text(displayBank, 15, 35);
-  if(showWelcomeMessage) {
+  if (progress[0] != "") {
     text("Welcome Back!", width / 2 - 95, height / 2 - 115);
   } else {
     text("Enter Username", width / 2 - 95, height / 2 - 115);
