@@ -96,6 +96,7 @@ void setup() {
     ALL_SYMBOLS.add(new symbol("3.png", "d", 1.25));
     ALL_SYMBOLS.add(new symbol("4.png", "e", 1.25));
     ALL_SYMBOLS.add(new symbol("5.png", "f", 1.25));
+    ALL_SYMBOLS.add(new symbol("6.png", "g", 1.25));
 
 
 
