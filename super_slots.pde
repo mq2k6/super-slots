@@ -271,7 +271,7 @@ void play_spin_animation() {
     showFAQ = true;
   }
   frameRate(30);
-  float x = (width/colNum)-25;
+  float x = (width/colNum) - 25;
   float y = (height/3) - 90;    
   
   leverImage(); //lever animation
@@ -304,7 +304,7 @@ void play_spin_animation() {
       }
       x += 125;
     }
-    x = (width/colNum)-25;    //standard 2d array nested forloop
+    x = (width/colNum) - 25;    //standard 2d array nested forloop
     y += 125;
   }
 }
@@ -312,7 +312,7 @@ void play_spin_animation() {
 
 void draw_bet_info() {
   fill(255);
-  text(bet_info, 500, 500);
+  text(bet_info, 0, 250);
 }
 
 void FAQ() {
