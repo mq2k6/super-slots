@@ -5,6 +5,7 @@ boolean homeScreen = true;
 boolean out_of_money = false;
 boolean bet_more = false;
 boolean showFAQ;
+boolean showWelcomeMessage;
 
 PFont calistoga, abeezee;
 
@@ -72,14 +73,14 @@ void setup() {
   confirmCancelButton.resize(int(458 / 3), int(208 / 3));
   FAQtextField.resize(800, 464);
 
-  if (progress.length > 0) {    //If the progress file is not empty, load last user
+  if (progress.length > 0 && progress[0] != "0") {    //If the progress file is not empty, load last user
     account.username = progress[0];
     account.cash = int(progress[1]);
     displayBank = displayBank.substring(0, displayBank.length() - 7);
     displayBank += nf(float(progress[1]), 0, 2);
     showClearProgress = true;
+    showWelcomeMessage = true;
   }
-
 
   if (homeScreen == true) {    //Homescreen = main slots screen
     createGUI();
