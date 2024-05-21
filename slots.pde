@@ -54,9 +54,9 @@ class slots {
   }
 
   
-  float spin(float bet) {
+  float spin(int bet) {
     bet_info = "";
-    bet_info += "bet: " + str(bet) + "\n";
+    bet_info += "bet: $" + str(bet) + "\n";
     fill_machine();
     //reset ArrayList
     winning_lines = new ArrayList<line>();
@@ -74,7 +74,7 @@ class slots {
   }
   
   //check each cell
-  float check_win(float bet) {
+  float check_win(int bet) {
     int wins = 0;
     ArrayList<symbol> winners = new ArrayList<symbol>();
     for(int i = 0; i < 3; ++i) {
@@ -97,8 +97,8 @@ class slots {
     }
     for(int i = 0; i < winning_lines.size(); ++i) {
     }
-    bet_info += "wins: " + str(wins) + "\n";
-    float payout = calc_payout(wins, bet, winners);
+    //bet_info += "wins: " + str(wins) + "\n";
+    int payout = calc_payout(wins, bet, winners);
     
     bet_info += "payout: " + str(payout) + "\n";
     return payout;
@@ -209,8 +209,8 @@ class slots {
     
   }
   
-  float calc_payout(int w, float bet, ArrayList<symbol> wins) {
-    float multipler = 0;
+  int calc_payout(int w, int bet, ArrayList<symbol> wins) {
+    int multipler = 0;
     for(int i = 0; i < wins.size(); ++i) {
       multipler += wins.get(i).value;
     }

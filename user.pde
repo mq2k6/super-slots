@@ -1,12 +1,11 @@
 class User {
 
   String username;
-  float cash;
+  int cash;
   int usernameLength;
+  int bet;
 
-  float bet;
-
-  User(String u, float c) {
+  User(String u, int c) {
     this.username = u;
     this.cash = c;
     this.usernameLength = u.length();
@@ -29,7 +28,6 @@ class User {
 
   void spin_slots() {
     if (bet <= 0) {
-      println("bet more money");
       spinning = false;
     }
     
@@ -37,12 +35,10 @@ class User {
       this.cash += s.spin(bet);
       spinning = true;
       this.cash -= bet;
-      bet_info += "balance: " + str(this.cash) + "\n";
+      bet_info += "balance: $" + str(this.cash) + "\n";
     }
     else {
       out_of_money = true;
-      println("cash:", this.cash);
-      println("bet", this.bet);
     }
   }
 

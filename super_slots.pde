@@ -14,17 +14,14 @@ slots s;
 User account;
 
 String bet_info = "";
-//code
-int numImages = 9;
 
+int numImages = 9;
 int colNum = 3;
-//float betSlide = 10;  //for bet slider
 
 PImage[][] symbols = new PImage[numImages][numImages];
 PImage leverUp, leverDown, faqButton, faqBackButton;
 
 boolean spinning = false;
-
 
 float spin_timer = -1; //used to count to spin_time
 float spin_time = 3000; //milliseconds
@@ -34,11 +31,13 @@ float[] columnSpeeds = new float[numImages];
 
 
 void setup() {
+  size(1200, 700);
+
   account = new User("", 1000);
 
   calistoga = createFont("Calistoga-Regular.ttf", 50);
   abeezee = createFont("ABeeZee-Regular.ttf", 24);
-  size(1200, 700);
+
   esrbRating = loadImage("esrbRating.png");
   gameLogo = loadImage("gameLogo.png");
   publisherLogo = loadImage("publisherLogo.png");
@@ -58,6 +57,7 @@ void setup() {
   faqBackButton = loadImage("FAQbackButton.png");
   progress = loadStrings("progress.txt");
 
+  //setting image sizes to be more practical
   FAQbutton.resize(411 / 4, 456 / 4);
   gameLogo.resize(350, 280);
   startButton.resize(int(300 / 1.5), int(119 / 1.5));
@@ -70,22 +70,20 @@ void setup() {
   loginButton.resize(int(308 / 2), int(114 / 2));
   clearProgressButton.resize(int(472 / 2), int(282 / 2));
   confirmCancelButton.resize(int(458 / 3), int(208 / 3));
-  FAQtextField.resize(689, 400);
+  FAQtextField.resize(800, 464);
 
-  if (progress.length > 0) {
+  if (progress.length > 0) {    //If the progress file is not empty, load last user
     account.username = progress[0];
-    account.cash = float(progress[1]);
+    account.cash = int(progress[1]);
     displayBank = displayBank.substring(0, displayBank.length() - 7);
     displayBank += nf(float(progress[1]), 0, 2);
     showClearProgress = true;
-    println("hi");
   }
 
 
-  if (homeScreen == true) {
+  if (homeScreen == true) {    //Homescreen = main slots screen
     createGUI();
     col_slider.setVisible(false);
-    //change_bet.setVisible(false);
     Change_BetLabel.setVisible(false);
     Change_Col.setVisible(false);
     increaseBet.setVisible(false);
@@ -94,14 +92,12 @@ void setup() {
     ALL_SYMBOLS.add(new symbol("0.png", "a", 5));
     ALL_SYMBOLS.add(new symbol("1.png", "b", 2));
     ALL_SYMBOLS.add(new symbol("2.png", "c", 1.35));
-    ALL_SYMBOLS.add(new symbol("3.png", "d", 1.25));
-    ALL_SYMBOLS.add(new symbol("4.png", "e", 1.25));
-    ALL_SYMBOLS.add(new symbol("5.png", "f", 1.25));
+    ALL_SYMBOLS.add(new symbol("3.png", "d", 1.15));
+    ALL_SYMBOLS.add(new symbol("4.png", "e", 1.45));
+    ALL_SYMBOLS.add(new symbol("5.png", "f", 1.65));
+    ALL_SYMBOLS.add(new symbol("6.png", "g", 1.75));
 
-    
-    
     numImages = ALL_SYMBOLS.size();
-
 
     for (int i=0; i<numImages; i++) {
       for (int j=0; j<numImages; j++) {
@@ -126,7 +122,6 @@ void setup() {
     leverUp.resize(175, 0);
     leverDown = loadImage("leverDown.png");
     leverDown.resize(175, 0);
-    
   }
 }
 
@@ -143,8 +138,9 @@ void set_slots() {
 
 void draw() {
   background(0);
-  //println(account.username, account.cash, account.usernameLength);
   fill(0);
+
+  //Intro screen draw handling
   if (!logoComplete) {
     introScreen();
   }
@@ -153,8 +149,9 @@ void draw() {
   }
   if (iconsComplete && !loginComplete) {
     login();
-  }
+  }    
 
+  //Draw the homescreen
   if (loginComplete && !showFAQ) {   //start slots once login button is preesed
     col_slider.isVisible();
     Change_BetLabel.isVisible();
@@ -163,44 +160,42 @@ void draw() {
     decreaseBet.isVisible();
     image(homeScreenBackground, 0, 0);
     play_spin_animation();
-     
-    
 
+    //While the spinner isn't spinning, show user their current information
     if (spinning == false) {
       draw_bet_info();
       fill(255);
       text(round(account.bet), 1150, 275);
       textSize(14);
-      fill(255,255,0);
-      text("Balance", 1130, 410);  //keep at this height for need more money & bet more text 
-      text(nf(account.cash,0,2), 1130, 430);      
+      fill(255, 255, 0);
+      text("Balance ($)", 1118, 410);  //keep at this height for need more money & bet more text 
+      text(nf(account.cash, 0, 2), 1118, 430);      
       account.saveProgress();
     }
   }
-  
-  if(showFAQ) {
+
+
+  if (showFAQ) {
     FAQ();
   }
-  
+
   // special cases for betting & cash
   if (out_of_money) {
     fill(255);
     textSize(14);
     text("need more money", 1060, 392);
-  }
-  else
+  } else
     out_of_money = false;
-    
-  if (bet_more) {
+
+  if (bet_more) {    //When the user is below the floor for their selected slot size
     fill(255);
     textSize(14);
     text("bet more", 1120, 392);
-  }
-  else
+  } else
     bet_more = false;
-  
-  if(!spinning) {
-    s.draw_lines();  
+
+  if (!spinning) {  //For showing if a user won
+    s.draw_lines();
   }
 }
 
@@ -220,27 +215,21 @@ void mouseClicked() {   //when lever clicked, spin reels
               changeCol[i] = 0;
               columnSpeeds[i] = random(2, 10);
             }
-          }
-          else {
-            println("bet more");
+          } else {
             spinning = false;
             bet_more = true;
           }
-        }
-        else {
-          println("need more cash");
-            spinning = false;
-            out_of_money = true;
+        } else {
+          spinning = false;
+          out_of_money = true;
         }
       }
     }
   }
-
-
 }
 
 
-void leverImage() {
+void leverImage() {    //Draw main slot machine
   if (spinning) {
     image(leverDown, (width/colNum) + 125*colNum - 8, (height/3)-115+150);
     col_slider.setVisible(false);
@@ -248,7 +237,6 @@ void leverImage() {
     Change_Col.setVisible(false);
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
-
   } else {
     image(leverUp, (width/colNum) + 125*colNum - 8, (height/3)-115+150);
     col_slider.setVisible(true);
@@ -256,9 +244,8 @@ void leverImage() {
     Change_Col.setVisible(true);
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
-
   }
- 
+
   noStroke();
   fill(0, 100);
   rect((width/colNum) - 50, (height/3)-115, 125*colNum+50, 425, 25, 25, 25, 25);
@@ -266,14 +253,17 @@ void leverImage() {
 
 
 void play_spin_animation() {
-  image(faqButton, 25, 15);
-  if(mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
-    showFAQ = true;
+  if (!spinning) {
+    image(faqButton, 25, 15);
+    if (mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
+      showFAQ = true;
+    }
   }
+
   frameRate(30);
-  float x = (width/colNum) - 25;
+  float x = (width/colNum)-25;
   float y = (height/3) - 90;    
-  
+
   leverImage(); //lever animation
 
   // Update column offsets and speeds
@@ -304,7 +294,7 @@ void play_spin_animation() {
       }
       x += 125;
     }
-    x = (width/colNum) - 25;    //standard 2d array nested forloop
+    x = (width/colNum)-25;    //standard 2d array nested forloop
     y += 125;
   }
 }
@@ -312,7 +302,7 @@ void play_spin_animation() {
 
 void draw_bet_info() {
   fill(255);
-  text(bet_info, 0, 250);
+  text(bet_info, 500, 570);
 }
 
 void FAQ() {
@@ -323,15 +313,37 @@ void FAQ() {
   Change_BetLabel.setVisible(false);
   fill(0);
   image(homeScreenBackground, 0, 0);
-  image(faqBackButton, 25, 640);
+  image(faqBackButton, 20, 640);
   image(FAQbanner, width / 2 - 200, 50);
   textFont(calistoga);
   textAlign(CENTER);
   text("FAQ", width / 2, 150);
-  image(FAQtextField, width / 2 - 344, 250);
+  textSize(24);
+  image(FAQtextField, width / 2 - 400, 225);
+  textAlign(LEFT);
+  float startX = width / 2 - 360;
+  float startY = 285;
+  float secondQAStartY = startY + 170;
+  float thirdQAStartY = secondQAStartY + 115;
+
+  text("Q: How can I control the slot machine?", startX, startY);
+  text("Q: Does this game save my progress?", startX, secondQAStartY);
+  text("Q: How much is each slot symbol worth?", startX, thirdQAStartY);
+
   textFont(abeezee);
-  //text("", ) FAQ Text
-  if (mousePressed && mouseX >= 25 && mouseX <= 115 && mouseY >= 640 && mouseY <= 685) {
+
+  text("A: Simply choose the size of your bet using the buttons on the ", startX, startY + 30);
+  text("right hand side, then click the lever to spin the reels! You may", startX, startY + 60);
+  text("choose the difficulty of the game using the columns slider in", startX, startY + 90);
+  text("the top right hand corner.", startX, startY + 120);
+
+  text("A: Absolutely. All users should be comfortable knowing that ", startX, secondQAStartY + 30);
+  text("their progress is continuously being saved into the game files.", startX, secondQAStartY + 60);
+
+  text("A: Each symbol multiplies your bet by a certain factor ranging ", startX, thirdQAStartY + 30);
+  text("from 1.25x and up to 5x. Refer to the user manual for details.", startX, thirdQAStartY + 60);
+
+  if (mousePressed && mouseX >= 20 && mouseX <= 110 && mouseY >= 640 && mouseY <= 685) {
     showFAQ = false;
   }
 }
