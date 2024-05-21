@@ -72,7 +72,7 @@ void setup() {
   confirmCancelButton.resize(int(458 / 3), int(208 / 3));
   FAQtextField.resize(800, 464);
 
-  if (progress.length > 0) {    //If the progress file is not empty, load last user
+  if (progress[0] != "") {    //If the progress file is not empty, load last user
     account.username = progress[0];
     account.cash = int(progress[1]);
     displayBank = displayBank.substring(0, displayBank.length() - 7);
