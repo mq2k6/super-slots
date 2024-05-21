@@ -97,7 +97,7 @@ class slots {
     }
     for(int i = 0; i < winning_lines.size(); ++i) {
     }
-    bet_info += "wins: " + str(wins) + "\n";
+    //bet_info += "wins: " + str(wins) + "\n";
     int payout = calc_payout(wins, bet, winners);
     
     bet_info += "payout: " + str(payout) + "\n";
