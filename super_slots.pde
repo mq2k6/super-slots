@@ -176,6 +176,10 @@ void draw() {
       account.saveProgress();
     }
   }
+  
+  if (!spinning && !showFAQ) {  //For showing if a user won
+    s.draw_lines();
+  }
 
 
   if (showFAQ) {
@@ -197,9 +201,7 @@ void draw() {
   } else
     bet_more = false;
 
-  if (!spinning) {  //For showing if a user won
-    s.draw_lines();
-  }
+
 }
 
 
