@@ -68,7 +68,7 @@ void login() {
 
   if (mousePressed && mouseX > width / 2 - 76 && mouseX < width / 2 - 10 && mouseY > height / 2 + 225 && mouseY < height / 2 + 225 + confirmCancelButton.height && mouseX < width / 2 - 20 + confirmCancelButton.width / 2 && showConfirmCancel) {
     account.clearProgress();
-    displayBank = "Cash: $1000.00";
+    displayBank = "Balance: $1000";
     showConfirmCancel = false;
     showClearProgress = false;    //When the user clears their progress, bank resets to $1000, and the user is returned to main login
   }

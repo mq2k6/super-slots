@@ -76,7 +76,7 @@ void setup() {
   if (progress.length > 0 && progress[0] != "0") {    //If the progress file is not empty, load last user
     account.username = progress[0];
     account.cash = int(progress[1]);
-    displayBank = displayBank.substring(0, 10);
+    displayBank = displayBank.substring(0, displayBank.length() - 4);
     displayBank += account.cash;
     showClearProgress = true;
     showWelcomeMessage = true;
@@ -178,10 +178,6 @@ void draw() {
       account.saveProgress();
     }
   }
-  
-  if (!spinning && !showFAQ) {  //For showing if a user won
-    s.draw_lines();
-  }
 
 
   if (showFAQ) {
@@ -203,7 +199,9 @@ void draw() {
   } else
     bet_more = false;
 
-
+  if (!spinning) {  //For showing if a user won
+    s.draw_lines();
+  }
 }
 
 
@@ -309,7 +307,7 @@ void play_spin_animation() {
 
 void draw_bet_info() {
   fill(255);
-  text(bet_info, 510, 570);
+  text(bet_info, 500, 570);
 }
 
 void FAQ() {

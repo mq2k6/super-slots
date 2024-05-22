@@ -39,7 +39,7 @@ class User {
       this.cash += s.spin(bet);
       spinning = true;
       this.cash -= bet;
-      displayBank = displayBank.substring(0, displayBank.length() - 4);
+      displayBank = displayBank.substring(0, 10);
       displayBank += account.cash;
     }
     else {

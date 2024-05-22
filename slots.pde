@@ -109,7 +109,7 @@ class slots {
     //bet_info += "wins: " + str(wins) + "\n";
     int payout = calc_payout(wins, bet, winners);
     
-    bet_info += "Payout: " + str(payout) + "\n";
+    bet_info += "Payout: $" + str(payout) + "\n";
     return payout;
 
   }  
