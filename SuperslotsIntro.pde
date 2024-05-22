@@ -1,5 +1,5 @@
 PImage esrbRating, gameLogo, publisherLogo, engineLogo, introBackground, startButton, loginBackground, usernameTextField, loginButton, clearProgressButton, confirmCancelButton, homeScreenBackground, FAQbanner, FAQtextField, FAQbutton;
-boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress;
+boolean introComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress;
 int exposure = 50;
 String[] progress;
 String displayBank = "Balance: $1000";
@@ -15,7 +15,7 @@ void introScreen() {
     if ((mousePressed && mouseX > width / 2 - 100 && mouseX < width / 2 - 100 + startButton.width && mouseY > height / 2 + 50 && mouseY < height / 2 + 50 + startButton.height) || (keyPressed && key == ENTER)) {
       background(0); // Checking if user presses start button
       account.usernameLength = account.username.length();
-      logoComplete = true;
+      introComplete = true;
     } 
   }
 }
@@ -82,13 +82,13 @@ void login() {
   }
 }
 
-void keyPressed() {      //Username entry handling
+void keyPressed() { //Username entry handling
   if (iconsComplete && !loginComplete) {
     account.usernameLength = account.username.length();
-    if (keyCode == BACKSPACE && account.usernameLength > 0) {
-      account.username = account.username.substring(0, account.username.length() - 1);
+    if (keyCode == BACKSPACE && account.usernameLength > 0) { // if backspace is clicked
+      account.username = account.username.substring(0, account.username.length() - 1); // username is shortened by one character
       account.usernameLength--;
-    } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) {
+    } else if (account.usernameLength < 9 && keyCode != BACKSPACE && keyCode != ENTER && keyCode != SHIFT) { //if the key is coded then it may be added to the usernmae
       if (key != CODED) {
         account.username += key;
         account.usernameLength++;

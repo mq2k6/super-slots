@@ -141,14 +141,14 @@ void draw() {
   background(0);
   fill(0);
 
-  //Intro screen draw handling
-  if (!logoComplete) {
+ 
+  if (!introComplete) { // as long as the introScreen isnt complete, it will be displayed to the screen
     introScreen();
   }
-  if (logoComplete && !iconsComplete) {
+  if (introComplete && !iconsComplete) { // if the intro is complete and the loading screen isnt, the loading screen will play
     introIcons();
   }
-  if (iconsComplete && !loginComplete) {
+  if (iconsComplete && !loginComplete) { // if the loading screen is complete and the login isnt, the login will play
     login();
     fill(255);
     textSize(14);
@@ -179,7 +179,7 @@ void draw() {
     }
   }
   
-  if (!spinning && !showFAQ) {  //For showing if a user won
+  if (!spinning && !showFAQ) {  //shows the white dash across a winning row, but not if the FAQ page is open
     s.draw_lines();
   }
 
