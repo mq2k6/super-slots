@@ -76,8 +76,8 @@ void setup() {
   if (progress.length > 0 && progress[0] != "0") {    //If the progress file is not empty, load last user
     account.username = progress[0];
     account.cash = int(progress[1]);
-    displayBank = displayBank.substring(0, displayBank.length() - 7);
-    displayBank += nf(float(progress[1]), 0, 2);
+    displayBank = displayBank.substring(0, displayBank.length() - 4);
+    displayBank += account.cash;
     showClearProgress = true;
     showWelcomeMessage = true;
   }
@@ -150,6 +150,8 @@ void draw() {
   }
   if (iconsComplete && !loginComplete) {
     login();
+    fill(255);
+    text(displayBank, 15, 35);
   }    
 
   //Draw the homescreen
@@ -161,6 +163,8 @@ void draw() {
     decreaseBet.isVisible();
     image(homeScreenBackground, 0, 0);
     play_spin_animation();
+    fill(255);
+    text(displayBank, 15, 35);
 
     //While the spinner isn't spinning, show user their current information
     if (spinning == false) {
@@ -169,8 +173,6 @@ void draw() {
       text(round(account.bet), 1150, 275);
       textSize(14);
       fill(255, 255, 0);
-      text("Balance ($)", 1118, 410);  //keep at this height for need more money & bet more text 
-      text(nf(account.cash, 0, 2), 1118, 430);      
       account.saveProgress();
     }
   }
@@ -255,8 +257,8 @@ void leverImage() {    //Draw main slot machine
 
 void play_spin_animation() {
   if (!spinning) {
-    image(faqButton, 25, 15);
-    if (mouseX >= 25 && mouseX <= 25 + 80 && mouseY >= 15 && mouseY <= 15 + 79 && mousePressed) {
+    image(faqButton, width - 20 - faqButton.width, height - 15 - faqButton.height);
+    if (mouseX >= width - 20 - faqButton.width && mouseX <= width - 20 && mouseY >= height - 15 - faqButton.height && mouseY <= height - 15 && mousePressed) {
       showFAQ = true;
     }
   }

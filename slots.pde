@@ -65,7 +65,7 @@ class slots {
   
   float spin(int bet) {
     bet_info = "";
-    bet_info += "bet: $" + str(bet) + "\n";
+    bet_info += "Bet: $" + str(bet) + "\n";
     fill_machine();
     //reset ArrayList
     winning_lines = new ArrayList<line>();
@@ -109,7 +109,7 @@ class slots {
     //bet_info += "wins: " + str(wins) + "\n";
     int payout = calc_payout(wins, bet, winners);
     
-    bet_info += "payout: " + str(payout) + "\n";
+    bet_info += "Payout: " + str(payout) + "\n";
     return payout;
 
   }  

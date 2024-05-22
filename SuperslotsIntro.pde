@@ -2,7 +2,7 @@ PImage esrbRating, gameLogo, publisherLogo, engineLogo, introBackground, startBu
 boolean logoComplete, iconsComplete, loginComplete, showConfirmCancel, showClearProgress;
 int exposure = 50;
 String[] progress;
-String displayBank = "Cash: $1000.00";
+String displayBank = "Balance: $1000";
 
 void introScreen() {
   tint(exposure);
@@ -50,7 +50,6 @@ void login() {
   image(loginButton, width / 2 - 77, height / 2 - 50);
   image(usernameTextField, width / 2 - 115, height / 2 - 120);
   fill(255);
-  text(displayBank, 15, 35);
   if(showWelcomeMessage) {
     text("Welcome Back!", width / 2 - 95, height / 2 - 115);
   } else {

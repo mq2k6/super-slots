@@ -46,11 +46,9 @@ public void createGUI(){
   
   //slider for column changing number of reels
   G4P.messagesEnabled(false);
-  G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("super_slots");
-  col_slider = new GCustomSlider(this, 1056, 20, 144, 48, "grey_blue");
-  col_slider.setShowValue(true);
+  col_slider = new GCustomSlider(this, 1035, 30, 144, 48);
   col_slider.setLimits(3.0, 3.0, 5.0);
   col_slider.setNbrTicks(3);
   col_slider.setStickToTicks(true);
@@ -60,11 +58,11 @@ public void createGUI(){
   col_slider.addEventHandler(this, "custom_slider1_change1");
  
    // button for changing bet
-  increaseBet = new GButton(this, 1115, 321, 85, 22);
+  increaseBet = new GButton(this, 1110, 321, 85, 22);
   increaseBet.setText("Increase Bet");
   increaseBet.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   increaseBet.addEventHandler(this, "increaseButton");
-  decreaseBet = new GButton(this, 1115, 352, 85, 22);
+  decreaseBet = new GButton(this, 1110, 352, 85, 22);
   decreaseBet.setText("Decrease Bet");
   decreaseBet.setLocalColorScheme(GCScheme.RED_SCHEME);
   decreaseBet.addEventHandler(this, "decreaseButton");
@@ -86,14 +84,14 @@ public void createGUI(){
   //change_bet.setNumberFormat(G4P.INTEGER, 0);  
   //change_bet.setRotation(PI/2);
   //change_bet.addEventHandler(this, "bet_slider");
-  Change_BetLabel = new GLabel(this, 1118, 290, 80, 20);
+  Change_BetLabel = new GLabel(this, 1110, 290, 85, 22);
   Change_BetLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   Change_BetLabel.setText("Change Bet");
   Change_BetLabel.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   Change_BetLabel.setOpaque(true);
-  
+ 
   //change col slider label
-  Change_Col = new GLabel(this, 1100, 10, 100, 20);
+  Change_Col = new GLabel(this, 1060, 10, 100, 20);
   Change_Col.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   Change_Col.setText("Change Column");
   Change_Col.setLocalColorScheme(GCScheme.PURPLE_SCHEME);

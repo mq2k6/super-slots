@@ -30,6 +30,7 @@ class User {
   }
 
   void spin_slots() {
+
     if (bet <= 0) {
       spinning = false;
     }
@@ -38,7 +39,8 @@ class User {
       this.cash += s.spin(bet);
       spinning = true;
       this.cash -= bet;
-      bet_info += "balance: $" + str(this.cash) + "\n";
+      displayBank = displayBank.substring(0, displayBank.length() - 4);
+      displayBank += account.cash;
     }
     else {
       out_of_money = true;
